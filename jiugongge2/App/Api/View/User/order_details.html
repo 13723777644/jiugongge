@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>订单详情</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/index.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/dingdan.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/home/js/dingdan.js"></script>
+
+	</head>
+	<body>
+
+<include file="Public:header" />
+
+<!--最大div-->		
+<div class="content">	
+
+
+<!--订单详情-->
+<div class="shouye">个人中心 ><a href="{:U('User/orders?key=')}{$appkey}"> 订单中心 </a> > 订单详情</div>
+<!--订单详情 未付款-->
+<if condition="($order.status eq 0)"> 
+<div class="dingdan_tu">
+	<h1>重要提示：本品台及销售商不会以<em>订单异常，系统升级</em>为由，要求您点击任何网址链接进行退款操作。</h1>
+	<ul>
+		<li><p>提交订单</p> 
+			<div class="zhong">
+				<div class="yuan">
+				   <div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+			    </div>
+			    <div class="tiao">
+			    	<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+			    </div>
+			</div>
+			<p>{$order.addtime|date="Y-m-d H:i",###}</p>
+		</li>
+		<li><p>等待付款</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 217px;height: 5px;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>商品出库</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;margin:5px 5px 5px 5px;"></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 130px;height: 5px;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>等待收货</p> 
+			<div class="zhong"><div class="yuan"></div><div class="tiao"></div></div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+		<li><p>完成订单</p> 
+			<div class="zhong"><div class="yuan"></div></div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+	</ul>
+</div>
+</if>
+<!--订单详情 商品出库-->
+<if condition="($order.status eq 1)"> 
+<div class="dingdan_tu">
+	<h1>重要提示：本品台及销售商不会以<em>订单异常，系统升级</em>为由，要求您点击任何网址链接进行退款操作。</h1>
+	<ul>
+		<li><p>提交订单</p> 
+			<div class="zhong">
+				<div class="yuan">
+				   <div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+			    </div>
+			    <div class="tiao">
+			    	<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+			    </div>
+			</div>
+			<p>{$order.addtime|date="Y-m-d H:i",###}</p>
+		</li>
+		<li><p>等待付款</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>商品出库</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 130px;height: 5px;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>等待收货</p> 
+			<div class="zhong"><div class="yuan"></div><div class="tiao"></div></div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+		<li><p>完成订单</p> 
+			<div class="zhong"><div class="yuan"></div></div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+	</ul>
+</div>
+</if>
+<if condition="($order.status eq 4)"> 
+<div class="dingdan_tu">
+	<h1>重要提示：本品台及销售商不会以<em>订单异常，系统升级</em>为由，要求您点击任何网址链接进行退款操作。</h1>
+	<ul>
+		<li><p>提交订单</p> 
+			<div class="zhong">
+				<div class="yuan">
+				   <div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+			    </div>
+			    <div class="tiao">
+			    	<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+			    </div>
+			</div>
+			<p>{$order.addtime|date="Y-m-d H:i",###}</p>
+		</li>
+		<li><p>等待付款</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>商品出库</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 220px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>等待收货</p> 
+			<div class="zhong"><div class="yuan"><div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"></div></div><div class="tiao"></div></div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+		<li><p>完成订单</p> 
+			<div class="zhong"><div class="yuan"></div></div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+	</ul>
+</div>
+</if>
+<if condition="($order.status eq 2)"> 
+<div class="dingdan_tu">
+	<h1>重要提示：本品台及销售商不会以<em>订单异常，系统升级</em>为由，要求您点击任何网址链接进行退款操作。</h1>
+	<ul>
+		<li><p>提交订单</p> 
+			<div class="zhong">
+				<div class="yuan">
+				   <div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+			    </div>
+			    <div class="tiao">
+			    	<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+			    </div>
+			</div>
+			<p>{$order.addtime|date="Y-m-d H:i",###}</p>
+		</li>
+		<li><p>等待付款</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>商品出库</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			
+		</li>
+		<li><p>等待收货</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 217px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;z-index:1111 ;"></div>
+				</div>
+			</div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+		<li><p>完成订单</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em></em></div>
+				</div>
+				
+			</div>
+			<!--<p>2015-12-27 11:15:50</p>-->
+		</li>
+	</ul>
+</div>
+</if>
+<!--订单信息-->
+<div class="dingdanxinxi">
+	<h1>订单信息</h1>
+	
+<div class="xinxi">
+	<ul>
+		<li class="bold">收货人信息</li>
+		<li>收货人：{$order.contact}</li>
+		<li>地&nbsp; &nbsp;址：{$order.address_xq}</li>
+		<li>手&nbsp; &nbsp;机：{$order.tel}</li>
+	</ul>
+	<if condition="$order.post_remark neq ''">
+	<ul>
+		<li class="bold">备注信息</li>
+		<li>{$order.post_remark}</li>
+	</ul>
+	</if>
+	<ul>
+		<li class="bold">支付及配送费方式</li>
+		<li>支付方式：<if condition="$order.type eq 'alipay' ">支付宝支付
+                  </if>
+                  <if condition="$order.type eq 'cash' ">线下支付
+                  </if>
+</li>    <if condition="$order.yprice neq '' ">
+		<li>运&nbsp; &nbsp;&nbsp; &nbsp;费：￥{$order.yprice}&nbsp;&nbsp;({$order['name']})</li>
+		</if>
+	</ul>
+	<notempty name="result">
+		<ul>
+	        <li class="bold">您的评价</li>
+	        <foreach name="result" item="ping">
+	           <li>评论内容：{$ping['concent']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;评价时间：{$ping['addtime']|date="Y-m-d H:i",###}</li>
+	        </foreach>
+		</ul>
+    </notempty>
+</div>
+
+<div class="qingdan">
+	<div class="zi">
+	<em style="float: left;margin-left: 15px;">商品清单</em>
+	<!-- <em style="float: right; margin-right: 30px;">查看物流状态</em> -->
+	</div>
+	<div class="bianhao">
+     <ul>
+     	<li>商品编号</li>
+     	<li>商品图片</li>
+     	<li style="width:35% ;">商品名称</li>
+     	<li>单价</li>
+     	<li>数量</li>
+     	<li>库存状态</li>
+     </ul>
+<volist name="product" id="pro">     
+    <ol>
+     	<li style="color:black ;">{$pro.pid}</li>
+     	<li class="img"><img src="{$think_path}{$pro.photo_x}" height="79" width="79" /></li>
+     	<li style="width:35% ; color:#397abe ;line-height: 1.5;padding-top: 20px;text-align: left;">{$pro.name}<br/>{$pro.pro_buff}</li>
+     	<li style="color:#c02e34;font-weight: bold;">￥{$pro.price}</li>
+     	<li>x {$pro.num}</li>
+     	<li>有货</li>
+     </ol> 
+</volist>
+</div>	<br /><br />	
+	
+</div>	
+<div class="zongjia">	
+<ol>
+	<li>商品总价：￥{$order.price} </li>
+	<if condition="$order.yprice neq '' ">
+	<li style="margin-right: 16px;">包含运费：￥ {$order.yprice}</li>
+	</if>
+	<li style="margin: 10px;color: black;">应付总额：<em style="font-weight: bold;font-size:20px;color:#bf232b ;">￥  {$order.zprice}</em></li>
+</ol>	
+</div>	
+
+</div>
+
+<!--订单信息  end-->
+<div class="xian"></div>
+<include file="Public:footer" />
+
+</div>
+	
+	</body>
+</html>

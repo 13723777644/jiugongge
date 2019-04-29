@@ -1,0 +1,131 @@
+/* pages/record/record.wxss */
+.content {
+  border-top: 1rpx solid #f3f3f3;
+}
+.cell {
+  display: flex;
+  align-items: center;
+  padding: 40rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+}
+.cell_left {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cell_rigth {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.addtime {
+  color: #999;
+  font-size: 26rpx;
+}
+.content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.checkbox {
+  width: 70%;
+  margin: 0 auto;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  color: #999;
+}
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 50rpx; /* 背景的宽 */
+   height: 50rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border-color: #5DDAF5;
+}
+/* 选中后的 对勾样式 （可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 50rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 50rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 50rpx;
+   text-align: center;
+   font-size:50rpx; /* 对勾大小 */
+   color:#5DDAF5; /* 对勾颜色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+.bottom {
+  padding: 30rpx;
+  border-top: 1rpx solid #f3f3f3;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+}
+.edit_button {
+  margin: 0 auto;
+  padding: 10rpx 50rpx;
+  border: 1rpx solid gainsboro;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}
+.cencal_button {
+  padding: 10rpx 50rpx;
+  border: 1rpx solid gainsboro;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}
+.button_layout {
+  height: 70rpx;
+  display: flex;
+  font-size: 26rpx;
+}
+.together {
+  width: 175rpx;
+  height: 70rpx;
+  border: 1rpx solid #FED943;
+  border-radius: 35rpx 0rpx 0rpx 35rpx;
+  box-sizing: border-box;
+  background-color: #FED943;
+  color: #000;
+  text-align: center;
+  line-height: 65rpx;
+}
+.delete {
+  width: 175rpx;
+  height: 70rpx;
+  border: 1rpx solid #FED943;
+  color: #000;
+  border-radius: 0rpx 35rpx 35rpx 0rpx;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 65rpx;
+}
+.show_edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

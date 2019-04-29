@@ -1,0 +1,35 @@
+/* pages/detail/detail.wxss */
+page {
+  background-color: #f3f3f3;
+  height: 100%;
+}
+.content {
+  padding: 20rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+  margin-left: 40rpx;
+  height: 90%;
+}
+.textarea  {
+  width: 100%;
+  height: 100%;
+}
+.bottom {
+  padding: 30rpx;
+  border-top: 1rpx solid #f3f3f3;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+}
+.copy_button {
+  padding: 10rpx 50rpx;
+  background-color: #5DDAF5;
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}

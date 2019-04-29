@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$pro.name}_{$cats.name}_{$app_name}</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/index.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/home/js/index2.js"></script>
+		<script src="__PUBLIC__/home/js/lanrenzhijia.js"></script>
+		<script src="__PUBLIC__/home/js/jquery-AlertMessage-1.0.js"></script>
+		<style type="text/css">
+           .db{width: 100%;height: 200px;background-color:white;border-top: 1px solid #e4e4e4;display: inline-block;}
+           .db ul{text-align: center;}
+           .db ul li{float: left;/*width:100%;height:25px;*/line-height: 25px ;text-align: center ;}
+		</style>
+	</head>
+	<body>
+		
+	<include file="Public:header" />
+<div class="content">	
+
+<!--中间商品 部分-->
+ <div class="shangpin">
+ 	<p><a href="{:U('Index/index?key=')}{$appkey}">首页</a> > <volist name="hang" id="da"><a href="{:U('Product/index',array('pid'=>$da['id'],'key'=>$appkey))}">{$da.name}</a>&nbsp;> &nbsp;</volist>{$pro.name}</p>
+ <div class="spnr">	
+ 
+  <div class="shangpin_zuo">
+ 	  <div class="zoompic"><img src="{$think_path}{$pro.photo_d}" width="400" height="400"/></div>
+  <div class="sliderbox">
+    <div id="btn-left" class="arrow-btn dasabled"></div>
+    <div class="slider" id="thumbnail">
+      <ul>
+	
+      <foreach  name="pro.simg" item="stimg">
+      <li ><a href="{$think_path}{$stimg}" target="_blank"><img src="{$think_path}{$stimg}" width="75" height="75" /></a></li>
+        </foreach>
+      </ul>
+    </div>
+    <div id="btn-right" class="arrow-btn"></div>
+  </div>
+<div class="fenxiang">
+<span>分享到:&nbsp;</span><!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+</div>
+
+ </div>	
+
+
+ <div class="shangpin_zhong">
+ 	<div class="qiaokeli">
+ 		<h1>{$pro.name}</h1>
+ 		<!-- <h2>层层甄选 真心真意 爱的见证 巧克力让爱历久弥新</h2> -->
+ 	</div>
+ 	
+ 	<div class="jiage">
+ 		<div class="youhuijia">
+ 		<h1>优 惠 价：<em class="money"><if condition="($pro.price_yh eq 0) OR ($pro.price_yh eq '') "> 价格面议<else />￥<span id="yh_price">{$pro.price_yh}</span>元<if condition="$pro.company neq ''">/{$pro.company}</if></if>
+		</em></h1>
+ 		<h2>原 价：<em>￥{$pro.price}<if condition="$pro.company neq ''">/{$pro.company}</if></em></h2>
+ 		<h2 class="king-number">销量：<em>{$pro['shiyong']}</em><if condition="$pro.company neq ''">{$pro.company}<else />件</if></h2>
+ 		<h2 class="king-number">人气：<em>{$pro['renqi']}</em></h2>
+ 		</div>
+ 	</div>
+ 	
+ 	<div class="chanpinsx" style="position:relative">
+ 		<if condition="$shuxing neq ''">
+ 		<input type='hidden' name="pro_buff" id="pro_buff" value="{$pro.pro_buff}">
+ 		<input type='hidden' name="counts" id="counts" value="<?php echo count($shuxing); ?>">
+ 		<?php foreach ($shuxing as $k => $v) { ?>
+ 			<input type='hidden' name="<?php echo $v['attr_id']; ?>" id="<?php echo $v['attr_id']; ?>" value="0">
+ 		<?php } ?>
+		<volist name="shuxing" id="buff">
+		<script type="text/javascript">
+	    $(function(){
+	    	$('#nr_{$buff.id} li').first().addClass('reds').siblings().removeClass('reds');
+		})
+		</script> 
+		<div class="pr_name">
+			<h2 >{$buff.attr_name}</h2>
+			<ul class="aaa" id="nr_{$buff.attr_id}">
+			<volist name="buff.sub" id="sub_buff">
+			<li><input type="hidden" class="hidval" value="{$sub_buff.id}" name="hidval">{$sub_buff.name}
+				<input type="hidden" class="hidval2" value="{$buff.attr_id}">
+			</li>
+			</volist>
+			</ul>
+		</div>
+		</volist>
+ 		</if>
+        <!-- <if condition="$guige neq '' ">
+        <h2 style="width:70px">产品规格:</h2>
+         <ul class="p_name top">
+        <volist name="guige" id="ge">
+ 			<li id="{$ge.id}" ><input type="hidden" value="{$ge.id}" name="hid">{$ge.name}</li>
+        </volist>
+        </ul>
+        </if> -->
+ 	</div>
+<script type="text/javascript">
+	$(function(){
+		$(".p_name").find("li").each(function(i){
+			$(this).click(function(){
+				$(this).addClass('red').siblings().removeClass('red');
+				$.post("{:U('Product/jiage?key=')}{$appkey}",{"key":$(".red input").val()},function(data){
+					//alert(data);
+					$(".money" ).html(data);
+				 })
+			})
+		})
+	})
+	
+</script> 	
+ <script type="text/javascript">
+ 	//设置不同规格不同价格
+	$(function(){
+		$(".aaa").find("li").each(function(i){
+			$(this).click(function(){
+				//加红色框样式
+				$(this).addClass('reds').siblings().removeClass('reds');
+				//把用户选择的规格id加载到对应隐藏域中
+				var attr_id = $(this).children('.hidval2').val();
+				$('#'+attr_id).val($(this).children('.hidval').val());
+
+				//获取该产品拥有的属性id（字符串类型）
+				var pro_buff = $('#pro_buff').val();
+				var dataStrArr=pro_buff.split(",");//把字符串分割成数组
+				//获取对应属性id下用户所选择的规格id
+				var arr=[];
+				for (var i = 0; i < dataStrArr.length; i++) {
+					arr[i] = $('#'+dataStrArr[i]).val();
+				};
+				//判断是否已选择完属性，如果选择完则更改价格和库存
+				var a = $.inArray('0',arr);
+				if (a<0) {
+					var data = {'buff':pro_buff,'buff_arr':arr.join(","),pid:"<?php echo $pro['id'] ?>"};
+					$.post('{:U("Product/jiage")}',data,function(data){
+						if (data.status==1) {
+							$('#yh_price').html(data.price);
+							$('#stock').html(data.stock);
+						}else{
+							return false;
+						}
+					},'json');
+				}
+			});
+		});
+	});
+</script>
+ 	<div class="xuangou">
+ 		<div class="jiajian">
+ 			<em>选购数量：</em>
+ 			<input type="button" id="jian" value="-" />
+            <input type="text" id="num" value="1" />
+            <input type="button" id="add" value="+" />
+            <em class="jian">(库存<span id="stock">{$pro.num}</span><if condition="$pro.company neq ''">{$pro.company}<else />件</if>)</em>
+ 		</div>
+ 		<div id="king_show_warn" class="king-show_warn"></div>
+<script type="text/javascript">
+    $(function(){
+    	 var knums = $('#stock').html();
+		 var n=$("#num").val();
+		 if(knums<=0){
+		 	  $('#king_show_warn').html('您所填的购买数量大于库存！');
+		      $('#king_show_warn').css('display', 'block');
+		      $(".lijigoumai").attr("disabled", "disabled");
+		      $(".shooping").attr("disabled", "disabled");
+		 }
+    	 $("#num").keyup(function () {
+                //如果输入非数字，则替换为''，如果输入数字，则在每4位之后添加一个空格分隔
+                this.value = this.value.replace(/[^\d]/g, '');
+                if(this.value<1){
+                	 $('#num').val("1");
+                	 return false;
+                } 
+                var knum = $('#stock').html();
+                if(knum<1){
+                   $('#king_show_warn').html('该商品缺少库存，暂时不能购买!');
+                   $(".lijigoumai").attr("disabled", "disabled");
+                   $(".shooping").attr("disabled", "disabled");
+                   return false;
+                }
+                
+                if(this.value>knum){
+                	  $('#king_show_warn').html('您所填的购买数量大于库存！')
+                      $('#king_show_warn').css('display', 'block');
+                      $(".lijigoumai").attr("disabled", "disabled");
+                      $(".shooping").attr("disabled", "disabled");
+                      $('#num').val("1");
+                      return false;
+                } else {
+                	$('#king_show_warn').css('display', 'none');
+                	 $(".lijigoumai").removeAttr("disabled");
+                      $(".shooping").removeAttr("disabled");
+                }
+         })
+    })
+</script>
+ 	<script>
+$(document).ready(function(){
+
+$("#add").click(function(){
+  var knum = $('#stock').html();
+  var n=$("#num").val();
+  if(knum>0){
+    var num=parseInt(n)+1;
+  }else{
+  	return false;
+  }
+  $("#num").val(num);
+  if(n>=knum){
+      $('#king_show_warn').html('您所填的购买数量大于库存！');
+      $('#king_show_warn').css('display', 'block');
+     
+      $(".lijigoumai").attr("disabled", "disabled");
+      $(".shooping").attr("disabled", "disabled");
+       $("#num").val(knum);
+      return false;
+  } else {
+  	 $('#king_show_warn').css('display', 'none');
+  	 $(".lijigoumai").removeAttr("disabled");
+     $(".shooping").removeAttr("disabled");
+  }
+});
+$("#jian").click(function(){
+  var n=$("#num").val();
+  var num=parseInt(n)-1;
+ // var price=num*{$pro.price_yh};
+ if(num==0){return false;}
+  $("#num").val(num);
+  $('#king_show_warn').css('display', 'none');
+  $(".lijigoumai").removeAttr("disabled");
+  $(".shooping").removeAttr("disabled");
+  });
+});
+</script>
+<script type="text/javascript">
+	$(function(){
+			$(".guanzhu .gz").click(function(){
+				$.post("{:U('Product/shoucangcp?key=')}{$appkey}",{"id":$("#pro_id").val()},function(data){
+					alert(data);
+				 })
+			})
+			$("#gzdp").click(function(){
+				$.post("{:U('Product/shoucangsp?key=')}{$appkey}",{"id":$("#sp_id").val()},function(data){
+					alert(data);
+				 })
+			})
+			$(".shooping").click(function(){
+				var fruit = "";
+				$(".pr_name .aaa .reds input:hidden[name='hidval']").each(function() {
+					fruit += $(this).val() + ",";
+				});
+
+				$.post("{:U('Shopping/add?key=')}{$appkey}",{"val":fruit,"gid":fruit,'num':$("#num").val(),'pid':$("#pro_id").val(),'partner':$("#sp_id").val()},function(data){
+					if(data.status==1){
+						//alert("该商品已成功加入您的购物车");
+						Message.showNotify("加入购物车成功",2000);
+						window.location.href=location.href;
+					}else {
+						//alert(data.status);
+						Message.showNotify(data.err,2000);
+						return false;
+					}
+			    },'json')
+			})
+	});
+	function voids(){
+		var fruit = "";
+		$(".pr_name .aaa .reds input:hidden[name='hidval']").each(function() {
+			fruit += $(this).val() + ",";
+		});
+		  window.location.href="{:U('Product/payment?key=')}{$appkey}&num="+$("#num").val()+"&pid="+$("#pro_id").val()+"&partner="+$("#sp_id").val()+"&gid="+$(".p_name .red input").val()+"&val="+fruit;
+		 // window.location.href="__URL__/payment/num/"+$("#num").val()+"/pid/"+$("#pro_id").val()+"/partner/"+$("#sp_id").val()+"/gid/"+$(".p_name .red input").val()+"/val/"+fruit;
+	}
+</script> 
+	<input type="hidden" id="pro_id" value="{$pro.id}">
+     <div class="guanzhu">
+     	    <button class="shooping">加入购物车</button>  
+            <button class="lijigoumai" onclick="voids();">立即购买</button> 
+            <button class="gz"><img src="__PUBLIC__/home/images/b.jpg" alt="" /><em>关注</em></button>
+     </div>
+         
+ 	</div>
+ 	
+ </div>		
+ 	
+ <div class="shangpin_you">
+ 	<div class="shangjiaxx">
+ 		<div class="sjxx"><img src="__PUBLIC__/home/images/a.jpg" alt="" /><em>商家信息</em></div>
+ 	<div class="sjxx_nr">
+ 		<div class="img"><img src="{$think_path}{$shang.logo}" alt="" /></div>
+ 		<ul>
+ 			<li>商家名称：{$shang.name}<input type="hidden" id="sp_id" value="{$shang.id}"></li>
+ 			<li>店铺类别：{$leib.name}</li>
+ 			<li>店铺等级：{$jib.name}</li>
+ 			<li>客服电话：{$shang.tel}</li>
+ 			<li>所 在 地：{$shang.address_xq}</li>
+ 				
+ 		</ul>
+        <div class="clearfix"></div>
+ 		<div class="ww">
+ 		<notempty name="shang['wangwang']">
+ 		<a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$shang.wangwang}&siteid=cntaobao&status=1&charset=utf-8">
+ 			<img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid={$shang.wangwang}&site=cntaobao&s=1&charset=utf-8" alt="点击这里给我发消息" />   
+ 		</a>
+ 	   <else />
+       </notempty>
+		<!--<a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid={$shang.wangwang}&site=cnalichn&s=10&charset=UTF-8" ><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid=martin7752&site=cnalichn&s=10&charset=UTF-8" alt="点击这里给我发消息" /></a>--></div>
+       
+ 		<div class="qq"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$shang.qq}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1778263065:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></div>
+ 	</div>	
+     <div class="clearfix"></div>
+ 		<button class="gzdp" id="gzdp">关注店铺</button>
+		<a href="{:U('Product/index',array('did'=>$shang['id'],'key'=>$appkey))}"><button class="gzdp">进入店铺</button></a>
+ 	</div>
+ </div>	
+
+</div> 	
+ </div>
+<!--中间商品 部分   end-->
+
+<!--推荐 精品-->
+<div class="tuijianjp">
+	<div class="tjjp_zi">
+		<h1>推荐精品</h1>
+	</div>
+	
+	
+	<div class="v_show">
+		
+		<div class="change_btn">
+			<span class="prev" ></span>
+			<span class="next"></span>
+		</div>
+		
+	 <div id="menu_cons">
+		<div class="tag1" style="display:block">
+       <ol class="con_list" style="position: relative;width:250% ;">
+          <volist name="tui" id="shp">
+          <li class="img1"><a href="{:U('Product/xi',array('id'=>$shp['id'],'key'=>$appkey))}"><empty name="shp.logo"><img class="ss" src="{$think_path}{$shp.photo_x}" alt="" /><else /> <img class="ss" src="{$think_path}{$shp.logo}" alt="" /></empty></a>
+          	<h1><span>{$shp.name|msubstr=0,10}</span><br /><em>
+			<if condition="($shp.price_yh eq 0) OR ($shp.price_yh eq '') "> 价格面议<else />￥{$shp.price_yh}元</if>
+			</em></h1>
+          </li>
+         </volist>
+        </ol>
+        </div> 
+	</div>
+</div>
+	
+</div>
+<!--推荐 精品      end-->
+
+<!--产品   底部-->
+<div class="dibu">
+	<div class="dibu_zuo">
+		<div class="dibu_zi"><img src="__PUBLIC__/home/images/c.jpg" alt="" /><em>最近上新</em></div>
+		
+	
+		<div class="change_btn1">
+			<span class="prev1" ></span>
+			<span class="next1"></span>
+		</div>
+	<!--上下焦点图-->	
+	 <div id="menu_con_p">
+		<div class="tag2" style="display:block">
+       <ul class="con_list1" style="position: relative; height:500% ;">
+        <volist name="xin" id="xip">
+          <li class="img2"><a href="{:U('Product/xi',array('id'=>$xip['id'],'key'=>$appkey))}"><empty name="xip.logo"><img class="ss" src="{$think_path}{$xip.photo_x}" alt="" /><else /> <img class="ss" src="{$think_path}{$xip.logo}" alt="" /></empty></a>
+          	<h1><span>{$xip.name|msubstr=0,10}</span><br /><em>
+			<if condition="($xip.price_yh eq 0) OR ($xip.price_yh eq '') "> 价格面议<else />￥{$xip.price_yh}元</if>
+			</em></h1>
+          </li>
+          </volist>
+        </ul>
+        </div> 
+	</div>
+	
+	</div>
+	
+	<div class="dibu_you">
+		<div id="dibu_chanpin">
+<!--tag标题-->
+    <ul id="top1">
+        <li><a  class="selected">产品详情</a></li>
+        <li><a class="">产品评价</a></li>
+    </ul>
+<!--二级菜单-->
+    <div id="menu_top">
+        <div class="text1" style="display:block">
+     {$pro.con}
+        </div> 
+        
+        
+        <div class="text2" style="display:none">
+        	  <em>注：本店商品信息均来自于合作方，本产品由该店铺提供,其产品信息的真实性,准确性和合法性与本商城无关,图片只是参考,请以实物为准。</em>
+        <ul class="ul1">
+        	<li class="lia">评价心得</li>
+        	<li>评星</li>
+        	<li>时间</li>
+        	<li>用户</li>
+        </ul>
+        <volist name="pingja" id="lun">
+         <ul class="ul2">
+        	<li class="lia">
+        		<h1>
+        			<p>{$lun.concent}</p>
+        			<span class="king-start">
+        				<for start="0" end="$lun['num']/2"  >
+        				   <img src="__PUBLIC__/home/css/img/start.png" alt="" />
+        				</for>
+        			</span>
+        		</h1>
+        		<h2>
+        			<notempty name="lun.reply_content">
+					商家回复：{$lun.reply_content}
+        			</notempty>
+        		</h2>
+        	</li>
+        	<li class="lib"><em>{$lun.addtime|date='Y-m-d',###}</em></li>
+        	<li class="lib"><em>{$lun.name}</em></li>
+        </ul>
+        </volist>
+   
+   
+        </div> 
+
+    </div>
+    </div>
+	
+	</div>
+	<div class="xian">	
+	
+	</div>
+<include file="Public:footer" />
+</div>
+<!--产品   底部    end-->
+<!--结尾-->	
+</div>
+ </div>
+</body>
+</html>

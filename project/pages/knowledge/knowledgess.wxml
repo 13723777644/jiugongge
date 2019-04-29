@@ -1,0 +1,21 @@
+<!--pages/knowledge/knowledges.wxml-->
+<!-- <image  src="{{url}}"></image> -->
+<view class="button_layout">
+<block  wx:for="{{arr1}}">
+<view>
+<image mode="scaleToFill" class="a" src="{{item.photo}}"></image>
+</view>
+
+</block>
+</view>
+<view class="button_layout">
+<block  wx:for="{{arr2}}">
+<view>
+<image  mode="scaleToFill" class="a"  src="{{item.photo}}"></image>
+</view>
+</block>
+</view>
+
+<button bindtap='xiazais' data-mode='rectangle'>下载</button>
+<button bindtap='fanhui' data-mode='rectangle'>重新切图</button>
+<ad unit-id="adunit-882ed710e06ec419"></ad>

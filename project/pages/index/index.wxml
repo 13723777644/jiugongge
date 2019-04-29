@@ -1,0 +1,63 @@
+<!--index.wxml-->
+
+<!-- 引入组件 -->
+<import src="/welCropper/welCropper.wxml" />
+
+<swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+    <swiper-item>
+
+
+
+      <block wx:if="{{item.position == 1}}">
+        <image data-index='{{index}}' bindtap='tiao' data-id="{{item.id}}" data-p="{{item.position}}" data-name="{{item.name}}" src="{{item.photo}}" class="slide-image" width="355" height="150" />
+   
+        </block>
+
+ 
+
+     <block wx:if="{{item.position == 2}}">
+  <navigator class='adv' target="miniProgram" app-id="wx460442a29f11d322" path="pages/synopsis/synopsis" version="release" open-type='navigate'>
+            <image data-index='{{index}}' src="{{item.photo}}" class="slide-image" width="355" height="150" />
+          </navigator>
+   
+        </block>
+   
+
+
+    </swiper-item>
+    </block>
+</swiper>
+
+
+
+<!-- 调用组件 -->
+<!-- <template is="welCropper" data="{{data:cropperData, cropperMovableItems:cropperMovableItems}}"></template> -->
+<template is="welCropper" data="{{cropperData:cropperData, cropperMovableItems:cropperMovableItems, cropperChangableData:cropperChangableData}}"></template>
+<ad unit-id="adunit-6005c5df6a2b6ff0"></ad>
+
+
+
+<view class='button_layer'>
+
+  <view class='button_item item1' bindtap='choosePhoto'>
+    <image class='item_img' src='../../images/vip.png'></image>
+    <text class='item_text'>拍照取字</text>
+  </view>
+  <view class='button_item item2' bindtap='toCoupons' data-mode='rectangle'>
+    <image class='item_img' src='../../images/ticket.png'></image>
+    <text class='item_text'>拍照精准取字</text>
+  </view>
+  <view class='button_item item3' bindtap='selectTap' data-mode='rectangle'>
+    <image class='item_img' src='../../images/course.png'></image>
+    <text class='item_text'>九宫格切图</text>
+  </view>
+  <view class='button_item item4' bindtap='selectTaps' data-mode='rectangle'>
+    <image class='item_img' src='../../images/tainer.png'></image>
+    <text class='item_text'>四宫格切图</text>
+  </view>
+
+
+</view>
+<!-- 用于选择图片，传入cropper中 -->
+<button>已被使用{{num}}次</button>

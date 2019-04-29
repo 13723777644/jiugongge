@@ -1,0 +1,357 @@
+<!-- $Id: agency_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 供货商列表 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/styles/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/transport.js"></script><script type="text/javascript" src="__PUBLIC__/jquery.js"></script><script language="JavaScript">
+</script>
+<script type="text/javascript">
+//即点即改
+$(function(){
+	$(".ww").click(function(){		
+		var inputobj = $("<input type='text'>");
+		inputobj.css("border-width",2);
+		inputobj.css("border-size",1);
+		var tdobj = $(this);
+		inputobj.width(tdobj.width());
+		inputobj.val(tdobj.html());
+		tdobj.html(""); 
+		inputobj.appendTo(tdobj);
+		inputobj.click(function(){
+			return false;
+		});
+		var uid =$(this).prev().find("input").val();
+		//alert(uid);
+		inputobj.focus(function(){
+			$(this).addClass("input");
+		});
+	   //alert(uid);
+		inputobj.blur(function(){
+			$.post("__URL__/update",{s_name:inputobj.val(),mid:uid},function(data)
+			{
+			alert(data);
+			});
+			$(this).removeClass("input");
+			tdobj.html(inputobj.val());
+			inputobj.remove();
+		});
+	});
+	});
+//全选删除
+function checkall(old,small)
+{
+	var cbs=document.getElementsByName(small);
+	for(var i=0;i<cbs.length;i++)
+	{
+		cbs[i].checked=old.checked;
+	}
+}
+function delcheck(checks)
+{
+	var rs=false;
+	var cbs=document.getElementsByName(checks);
+	for(var i=0;i<cbs.length;i++)
+	{
+		if(cbs[i].checked==true)
+		{
+			rs=true;
+		}
+	}
+	if(rs==true)
+	{
+		return confirm('您确定要删除吗？');
+	}
+	else
+	{
+		alert('请至少选择一项进行删除');
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="__APP__/Power/suppliers_info_add">添加供货商</a></span>
+<span class="action-span1"><a href="index.php?act=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 供货商列表 </span>
+<div style="clear:both"></div>
+</h1>
+<script type="text/javascript" src="__PUBLIC__/js/utils.js"></script><script type="text/javascript" ></script>
+<form method="post" action="__APP__/Power/suppliersadd" name="listForm" onsubmit="return confirm(batch_drop_confirm);">
+<div class="list-div" id="listDiv">
+
+  <table cellpadding="3" cellspacing="1">
+    <tr>
+      <th> <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox" />
+          <a href="javascript:listTable.sort('suppliers_id'); ">编号</a><img src="__PUBLIC__/images/sort_desc.gif"> </th>
+      <th width="30%"><a href="javascript:listTable.sort('suppliers_name'); ">供货商名称</a></th>
+      <th>供货商描述</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+	 <volist name="arr" id="arr">
+        <tr>
+      <td><input type="checkbox" name="checkboxes[]" value="{$arr.s_id}" />
+        {$arr.s_id}</td>
+      <td class="ww">
+         {$arr.s_name}     </td>
+      <td> {$arr.s_content}</td>
+			<td align="center" class="ccc"><img src="__PUBLIC__/images/no.gif" onclick="listTable.toggle(this, 'is_check', 1)" style="cursor:pointer;"/></td>
+      <td align="center">
+        <a href="__APP__/Power/suppliers_info_edit/s_id/{$arr.s_id}" title="编辑">编辑</a> |
+        <a href="__APP__/Power/supplier_info_del/s_id/{$arr.s_id}"onClick="javascript:return confirm('确实要删除吗?')" title="移除">移除</a>      </td>
+    </tr>
+	</volist>
+      </table>
+<table id="page-table" cellspacing="0">
+  
+
+
+	<td colspan="10" align="right" style="color:blue;">{$page}</td>
+    </td>
+    <td align="right" nowrap="true">
+ 
+    </td>
+  </tr>
+</table>
+
+</div>
+</form>
+
+
+<script type="text/javascript" language="javascript">
+  <!--//对号 错号 
+ $(function(){
+ $(".ccc").click(function(){
+
+ var val = (obj.src.match(/yes.gif/i))?1:2;
+// alert(val);
+if(2==val){
+      var     bb=$(this).html("");
+var     aa=$("<img src='__PUBLIC__/images/yes.gif'>");
+         aa.appendTo(bb);
+
+}
+else{
+var     bb=$(this).html("");
+var     aa=$("<img src='__PUBLIC__/images/no.gif'>");
+         aa.appendTo(bb);
+ 
+}
+var id=$(this).prev().find("input").val();
+alert(id);
+alert(val);
+$.post("__URL__/update",{id:id;show:val},function(data){
+   alert(data);
+})
+ })
+ 
+ })
+
+  listTable.recordCount = 2;
+  listTable.pageCount = 1;
+
+    listTable.filter.sort_by = 'suppliers_id';
+    listTable.filter.sort_order = 'ASC';
+    listTable.filter.page = '1';
+    listTable.filter.page_size = '15';
+    listTable.filter.record_count = '2';
+    listTable.filter.page_count = '1';
+  
+  
+  onload = functi
+  
+  
+  
+  
+  on()
+  {
+      // 开始检查订单
+      startCheckOrder();
+  }
+  
+  //-->
+
+</script>
+<div id="footer">
+共执行 3 个查询，用时 0.011022 秒，Gzip 已禁用，内存占用 1.915 MB<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+<!-- 新订单提示信息 -->
+<div id="popMsg">
+  <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#cfdef4" border="0">
+  <tr>
+    <td style="color: #0f2c8c" width="30" height="24"></td>
+    <td style="font-weight: normal; color: #1f336b; padding-top: 4px;padding-left: 4px" valign="center" width="100%"> 新订单通知</td>
+    <td style="padding-top: 2px;padding-right:2px" valign="center" align="right" width="19"><span title="关闭" style="cursor: hand;cursor:pointer;color:red;font-size:12px;font-weight:bold;margin-right:4px;" onclick="Message.close()" >×</span><!-- <img title=关闭 style="cursor: hand" onclick=closediv() hspace=3 src="msgclose.jpg"> --></td>
+  </tr>
+  <tr>
+    <td style="padding-right: 1px; padding-bottom: 1px" colspan="3" height="70">
+    <div id="popMsgContent">
+      <p>您有 <strong style="color:#ff0000" id="spanNewOrder">1</strong> 个新订单以及       <strong style="color:#ff0000" id="spanNewPaid">0</strong> 个新付款的订单</p>
+      <p align="center" style="word-break:break-all"><a href="order.php?act=list"><span style="color:#ff0000">点击查看新订单</span></a></p>
+    </div>
+    </td>
+  </tr>
+  </table>
+</div>
+
+<!--
+<embed src="images/online.wav" width="0" height="0" autostart="false" name="msgBeep" id="msgBeep" enablejavascript="true"/>
+-->
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0" id="msgBeep" width="1" height="1">
+  <param name="movie" value="images/online.swf">
+  <param name="quality" value="high">
+  <embed src="images/online.swf" name="msgBeep" id="msgBeep" quality="high" width="0" height="0" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?p1_prod_version=shockwaveflash">
+  </embed>
+</object>
+
+<script language="JavaScript">
+document.onmousemove=function(e)
+{
+  var obj = Utils.srcElement(e);
+  if (typeof(obj.onclick) == 'function' && obj.onclick.toString().indexOf('listTable.edit') != -1)
+  {
+    obj.title = '点击修改内容';
+    obj.style.cssText = 'background: #278296;';
+    obj.onmouseout = function(e)
+    {
+      this.style.cssText = '';
+    }
+  }
+  else if (typeof(obj.href) != 'undefined' && obj.href.indexOf('listTable.sort') != -1)
+  {
+    obj.title = '点击对列表排序';
+  }
+}
+<!--
+
+
+var MyTodolist;
+function showTodoList(adminid)
+{
+  if(!MyTodolist)
+  {
+    var global = $import("../js/global.js","js");
+    global.onload = global.onreadystatechange= function()
+    {
+      if(this.readyState && this.readyState=="loading")return;
+      var md5 = $import("js/md5.js","js");
+      md5.onload = md5.onreadystatechange= function()
+      {
+        if(this.readyState && this.readyState=="loading")return;
+        var todolist = $import("js/todolist.js","js");
+        todolist.onload = todolist.onreadystatechange = function()
+        {
+          if(this.readyState && this.readyState=="loading")return;
+          MyTodolist = new Todolist();
+          MyTodolist.show();
+        }
+      }
+    }
+  }
+  else
+  {
+    if(MyTodolist.visibility)
+    {
+      MyTodolist.hide();
+    }
+    else
+    {
+      MyTodolist.show();
+    }
+  }
+}
+
+if (Browser.isIE)
+{
+  onscroll = function()
+  {
+    //document.getElementById('calculator').style.top = document.body.scrollTop;
+    document.getElementById('popMsg').style.top = (document.body.scrollTop + document.body.clientHeight - document.getElementById('popMsg').offsetHeight) + "px";
+  }
+}
+
+if (document.getElementById("listDiv"))
+{
+  document.getElementById("listDiv").onmouseover = function(e)
+  {
+    obj = Utils.srcElement(e);
+
+    if (obj)
+    {
+      if (obj.parentNode.tagName.toLowerCase() == "tr") row = obj.parentNode;
+      else if (obj.parentNode.parentNode.tagName.toLowerCase() == "tr") row = obj.parentNode.parentNode;
+      else return;
+
+      for (i = 0; i < row.cells.length; i++)
+      {
+        if (row.cells[i].tagName != "TH") row.cells[i].style.backgroundColor = '#F4FAFB';
+      }
+    }
+
+  }
+
+  document.getElementById("listDiv").onmouseout = function(e)
+  {
+    obj = Utils.srcElement(e);
+
+    if (obj)
+    {
+      if (obj.parentNode.tagName.toLowerCase() == "tr") row = obj.parentNode;
+      else if (obj.parentNode.parentNode.tagName.toLowerCase() == "tr") row = obj.parentNode.parentNode;
+      else return;
+
+      for (i = 0; i < row.cells.length; i++)
+      {
+          if (row.cells[i].tagName != "TH") row.cells[i].style.backgroundColor = '#FFF';
+      }
+    }
+  }
+
+  document.getElementById("listDiv").onclick = function(e)
+  {
+    var obj = Utils.srcElement(e);
+
+    if (obj.tagName == "INPUT" && obj.type == "checkbox")
+    {
+      if (!document.forms['listForm'])
+      {
+        return;
+      }
+      var nodes = document.forms['listForm'].elements;
+      var checked = false;
+
+      for (i = 0; i < nodes.length; i++)
+      {
+        if (nodes[i].checked)
+        {
+           checked = true;
+           break;
+         }
+      }
+
+      if(document.getElementById("btnSubmit"))
+      {
+        document.getElementById("btnSubmit").disabled = !checked;
+      }
+      for (i = 1; i <= 10; i++)
+      {
+        if (document.getElementById("btnSubmit" + i))
+        {
+          document.getElementById("btnSubmit" + i).disabled = !checked;
+        }
+      }
+    }
+  }
+
+}
+
+//-->
+</script>
+</body>
+</html>

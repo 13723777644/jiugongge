@@ -1,0 +1,16 @@
+/* pages/knowledge/knowledges.wxss */
+.button_layout {
+  width:100%;
+height:205rpx;
+display:flex;
+justify-content:center;
+align-items:center;
+
+
+}
+
+.a{
+  width:200rpx;
+  height: 200rpx;
+  margin-right:5rpx
+}

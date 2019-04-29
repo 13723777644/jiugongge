@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/gerenzhongxin.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/home/js/gerenzhongxin.js"></script>
+	</head>
+	<body>
+<include file="Public:header_zc" />
+
+<!--最大  div-->
+<div class="content">
+<!--个人中心   标题-->
+
+<div class="gouwuchebt">
+<div class="logo">
+	<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>个人中心</h1></div>
+
+</div>
+<!--个人中心   end-->
+
+<!--搜索商品-->
+<form class="form-search" action="{:U('User/orders?key=')}{$appkey}" method="post" >
+	<div class="geren_sousuo">
+    			<input type="text" placeholder="商品名称" name="keywords"/>
+    			<button type="submit"  name="sub">确定</button>
+    </div>
+    </form>
+<!--搜索商品  end-->
+
+<!--我的订单-->
+<div class="mydingdan">
+	<!-- 左边-->
+	<include file="Public:left" />
+<!--我的订单-->
+<!-- 右边-->
+	<div class="mydingdan_you">
+		<div class="my">我的订单</div>
+		<div id="paginationdemo" class="demo">
+<!--第一页-->
+		 <div class="page">
+		 	<ol>
+		 	<li class="dingdan">订单详情</li> 
+			<li>收货人</li>
+			<li>单价</li>
+			<li>总价</li>
+			<li>全部状态</li>
+			<li>操作</li>
+		 	</ol>
+  <!--11111-->
+  <volist name="order" id="ors">	
+	<div class="order_buttonn four_a">
+		<if condition="$ors.status eq '0' ">
+		<if condition="($ors['status'] eq '0') AND ($ors['type'] eq 'alipay')"><a href="{:U('Pay/doalipay',array('keys'=>$ors['shop_id'],'val'=>$ors['order_sn'],'key'=>$appkey))}"><button>立即付款</button></a>
+
+		<else />请自行联系商家发货</if><br /></if>
+		<if condition="$ors.status eq '4' "><a href="{:U('User/orders_edit',array('id'=>$ors['id'],'status'=>2,'key'=>$appkey))}"><button style="background-color:#f5f5f5 ;color: black;border: 1px solid #e4e4e4;margin-top: 7px;">确认收货</button></a></if>
+		<if condition="($ors.status eq 1) AND ($ors['type'] eq 'alipay')">
+			<a href="{:U('User/orders_edit',array('id'=>$ors['id'],'status'=>7,'key'=>$appkey))}" onclick="if(confirm('确定取消订单,申请退款?')==false)return false;"><span style="color:#333333;">取消订单</span></a>
+			<elseif condition="($ors.status eq 1) AND ($ors['type'] eq 'cash')"/>
+			<a href="{:U('User/orders_edit',array('id'=>$ors['id'],'status'=>3,'key'=>$appkey))}" onclick="if(confirm('确定取消订单,交易关闭?')==false)return false;"><span style="color:#333333;">取消订单</span></a>
+		</if>
+		<if condition="$_GET['key'] eq 15222">
+		<if condition="($ors.status eq 2) AND ($ors.mstatus eq 0)">
+			<a href="{:U('User/order_comment',array('id'=>$ors['str'],'orderid'=>$ors['id'],'key'=>$appkey))}"><button>评价</button></a>
+		<elseif condition="($ors.status eq 2) AND ($ors.mstatus eq 1)"/>
+		<a href="javascript:;"><button>已评价</button></a>
+		</if>
+	</if>
+	</div>
+    <div class="shangpin_one">
+	   
+		<div class="xiangqing">
+			<ul>
+				<li class="time">下单时间：{$ors.addtime|date="Y-m-d H:i",###}</li>
+				<li>订单编号：{$ors.order_sn}</li>
+				<foreach name="ors['shang']" item="shang">
+				     <li>商家：<a href="{:U('Shopping/shopDetail',array('id'=>$shang['id'],'key'=>$appkey))}">{$shang.name}</a></li>
+			    </foreach>
+				<li class="shangchu">
+				 <if condition="($ors.status eq 2) OR ($ors.status eq 3) OR ($ors.status eq 7)">
+					<a  class="remove_btn" href="{:U('User/orders_del',array('id'=>$ors['id'],'key'=>$appkey))}"><img src="__PUBLIC__/img/lj.jpg" alt="" /></a>
+				</if>
+				</li>
+			</ul>
+		</div>
+		<volist name="ors['slist']" id="pro" key="k">
+		<div class="shangpin_one_top">		
+			<ul class="xian">
+				<!--{:U('Product/xi',array('id'=>$pro['pid'],'key'=>$appkey))}-->
+				<li class="one"><a href="{:U('Product/xi',array('id'=>$pro['pid'],'key'=>$appkey))}"><img src="{$think_path}{$pro.photo_x}" alt="" height="79" width="79" /></a></li>
+				<li class="two"><a href="{:U('Product/xi',array('id'=>$pro['pid'],'key'=>$appkey))}">{$pro.name}</a></li>
+				<li class="three">x {$pro.num}</li>
+			</ul>
+			<ul class="four">
+				<li class=""><b>{$ors.contact}</b></li>
+				<li><b>￥ <if condition="$pro.price eq 0">价格面议<else />{$pro['price']}</if></b></li>
+				<li><b>￥ <if condition="$pro.price eq 0">价格面议<else />{$pro['price']*$pro['num']}</if></b></li>
+				<li class="four_a"><b>
+				<if condition="$ors.status eq 2 "><em>交易完成</em><br /></if>
+				<if condition="($ors.status eq 7) AND ($ors.type eq 'alipay')">
+					<em>已申请退款</em><BR/>
+					<elseif condition="($ors['status'] eq 3)"/>
+					<em>交易关闭</em><BR/>
+					
+				</if>
+				<if condition="$ors.status eq '0' "><em>未付款</em><br /><a href="{:U('User/order_details',array('id'=>$ors['id'],'key'=>$appkey))}"><span>订单详情</span></a>
+				<elseif condition="$ors.status eq '1' "/><em>待发货</em><br /><a href="{:U('User/order_details',array('id'=>$ors['id'],'key'=>$appkey))}"><span>订单详情</span></a>
+				<else /><a href="{:U('User/order_details',array('id'=>$ors['id'],'key'=>$appkey))}"><span>订单详情</span></a><br/></if></b>
+				</li>
+				<li class="four_a four_b">
+
+				</li>
+			</ul>
+	    </div>		
+		</volist>   
+    </div>
+ </volist>
+ <!--第一页  完-->   
+<!--分页 -->		
+	<div class="yeshu">  
+       <div id="pagnation">{$page}</div>
+    </div>
+    
+ </div>	
+</div>		
+</div>
+
+<!--我的订单   end-->
+
+<include file="Public:footer" />
+
+</div>
+	</body>
+</html>

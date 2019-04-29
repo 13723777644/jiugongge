@@ -1,0 +1,10 @@
+/* pages/knowledge/knowledge.wxss */
+@import "../../wxParse/wxParse.wxss";
+.content {
+  /* padding: 20rpx; */
+  background-color: #fff
+}
+.title {
+  font-size: 32rpx;
+  font-weight: 600
+}

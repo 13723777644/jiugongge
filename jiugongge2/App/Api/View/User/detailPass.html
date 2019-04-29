@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人中心_个人信息</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/gerenxinxi.css" />
+	    <script src="__PUBLIC__/plugins/uploadify/jquery.min.js" type="text/javascript"></script>
+		
+		<script src="__PUBLIC__/home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/home/js/jquery.miloc.ui.js"></script>
+		
+
+    	
+	</head>
+	<body>
+		<include file="Public:header_zc" />
+
+<!--最大  div-->
+<div class="content">
+<!--个人中心   标题-->
+
+<div class="gouwuchebt">
+<div class="logo">
+		<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>个人中心</h1></div>
+
+</div>
+<!--个人中心   end-->
+
+<form class="form-search" action="{:U('Product/index?key=')}{$appkey}" method="post" id="form2">
+	<div class="geren_sousuo">
+    			<input type="text" placeholder="商品名称" name="keywords"/>
+    			<button  type="submit"  name="sub">确定</button>
+    </div>
+    </form>
+<!--搜索商品  end-->
+
+<!--我的订单-->
+<div class="guanzhudianpu">
+	<include file="Public:left" />
+
+<!-- 右边-->
+	<div class="dianpu_you">
+		<h1 class="my">基本信息</h1>
+		
+		<form action="{:U('User/detailPass?key=')}{$appkey}" method="post" enctype="multipart/form-data" id="form1" name="form1">
+		<div id="form">
+		 <div id="one">
+        <h3 class="one">旧密码：</h3>
+        <input autocomplete="on" class="Y2" type="password" placeholder="6-18位，字母、数字、符号"  name="pwd" maxlength="18" >
+        <h4></h4>
+     </div>
+        <div id="one">
+        <h3 class="one">新密码：</h3>
+        <input autocomplete="on" class="Y3" type="password" placeholder="请输入新密码" name="pwds" maxlength="18">
+        <h4></h4>
+     </div>
+
+       <div class="button">
+       	<input class="a-1" id="a-1" type="submit" name="submit" value="保存提交">
+       </div>
+    </div>
+    
+
+  </form>      
+        
+    </div>		
+</div>
+<!--我的订单   end-->
+
+<include file="Public:footer" />
+<!--结尾-->
+ 
+
+</div>
+	</body>
+	<script type="text/javascript">
+          
+          $(function(){
+          	   //密码 验证  8-12位字母及数字
+          	   $(":input").blur(function(){
+	               if(this.value==""){
+	                   $(this).next("h4").text("6-18位，字母、数字、符号");
+	               }
+	               if($(this).is(".Y2")){
+	                   var $Y2=$(this).val();
+	                   var reg=/^[A-Za-z0-9\S]+$/;
+	                   var parrtest=/^[^ ]$/;
+					           if(!reg.test($Y2)||$Y2.length<6||$Y2.length>18||parrtest.test($Y2)){
+					           	console.log('11111');
+	                  $(this).addClass("hehe").next("h4").text("6-18位、字母、数字、符号");
+	                   }else{
+	                   	/*console.log('2222');*/
+	                        $(this).addClass("haha")
+	                        .next("h4").text("")
+	                      }
+	               }
+	               
+	               
+	                //确认密码 验证
+	                if($(this).is(".Y3")){
+	                	
+	                 var $Y3=$(this).val();
+	                   var reg=/^[A-Za-z0-9\S]+$/;
+	                   var parrtest=/^[^ ]$/;
+					           if(!reg.test($Y3)||$Y3.length<6||$Y3.length>18||parrtest.test($Y3)){
+					           	/*console.log('11111');*/
+	                  $(this).addClass("hehe").next("h4").text("6-18位、字母、数字、符号");
+	                   }else{
+	                   	/*console.log('2222');*/
+	                        $(this).addClass("haha")
+	                        .next("h4").text("")
+	                      }
+	               }
+				});
+          })
+
+	</script>
+</html>

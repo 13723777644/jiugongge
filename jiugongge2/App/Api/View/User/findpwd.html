@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>找回密码</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/zhaohuimima.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.9.1.min.js"></script>
+		<script src="__PUBLIC__/home/js/zhaohuimima.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="toubu">	
+  <div class="dingbu">
+	<div class="db_zuo">
+		<span>欢迎光临<em><a href="##"> 亲,请登录</em></a></span>
+		<span>&nbsp;&nbsp;<a href="##">免费注册</a></span>
+	</div>
+	<div class="db_you">
+		<div class="subNavBox">
+	<div class="subNav currentDd ">我的信息
+	<ul class="navContent " style="display:none">
+			<li><a href="#">1111</a></li>
+			<li><a href="#">2222</a></li>	
+	</ul>
+	</div>
+    </div>
+    
+    <span class="span1">|</span>
+    
+    <div class="subNavBox1">
+	<div class="subNav1 currentDd1 currentDt1">我的订单
+	
+	</div>		
+    </div>
+	  <span class="span2">|</span>
+	
+	<div class="subNavBox">
+	<div class="subNav currentDd">我的关注
+	<ul class="navContent " style="display:none">
+			<li><a href="#">1111</a></li>
+			<li><a href="#">2222</a></li>
+			<li><a href="#">3333</a></li>
+			<li><a href="#">4444</a></li>
+	</ul>
+	</div>
+    </div>
+       <span class="span3">|</span>
+     
+    <div class="subNavBox">
+	<div class="subNav currentDd ">手机商城
+	<ul class="navContent " style="display:none">
+			<li><a href="#">1111</a></li>
+			<li><a href="#">2222</a></li>
+			<li><a href="#">3333</a></li>
+			<li><a href="#">4444</a></li>
+	</ul>
+	</div>
+    </div>
+      <span class="span4">|</span>
+    
+    <div class="subNavBox">
+	<div class="subNav currentDd">商家服务
+	<ul class="navContent " style="display:none">
+			<li><a href="#">1111</a></li>
+			<li><a href="#">2222</a></li>
+			<li><a href="#">3333</a></li>
+			<li><a href="#">4444</a></li>
+	</ul>
+	</div>
+    </div>
+      <span class="span4">|</span>
+	</div>
+	
+	<div id="content1"></div>
+	
+
+<script>	
+$(function(){
+	$("navContent").hide()
+$(".subNav").each(function(i){
+	$(".subNav").eq(i).hover(function(){
+		$(".subNav").eq(i).addClass("currentDt");
+		$(".subNav").eq(i).find("ul").show();	
+  },function(){	
+  	$(".subNav").eq(i).removeClass("currentDt");
+  	$(".subNav").eq(i).find("ul").hide();
+  });
+				
+ });
+});
+</script>	
+  </div>
+</div>
+
+<!--  完-->
+
+<!--最大  div-->
+<div class="content">
+<!--找回密码   标题-->
+
+<div class="zhucebt">
+<div class="logo">
+	<img src="" alt="" />
+</div>	
+<div class="hyzc"><h1>找回密码</h1></div>
+</div>
+<!--找回密码   end-->
+
+<!--找回密码  内容-->
+<div class="zhuce">
+	
+	<form action="###.html" id="form1" method="post">
+        <div id="one">
+        <h3 class="one"><span>*</span>用户名：</h3>
+        <input autocomplete="on" id="Y1" type="text" placeholder="8-12位字母">
+        <h4></h4>
+        </div>
+     
+        <div id="five">
+        <h3 class="five"><span>*</span>手机号：</h3>
+        <input id="Y5" type="text" placeholder="11位手机号">
+        <h4></h4><button>发送验证码</button>
+        </div>
+               
+        <div id="six">
+        <h3 class="six"><span>*</span>验证码：</h3>
+        <input id="Y6" type="text" placeholder="">
+        <h1>请输入手机验证码</h1>
+        </div>
+        
+        <div id="four">
+        <h3 class="four"><span>*</span>昵称：</h3>
+        <input id="Y4" type="text" placeholder="2-6位中文汉字">
+        <h4></h4>
+        </div>
+        
+        <div id="two">
+        <h3 class="two"><span>*</span>新密码：</h3>
+        <input type="password" id="Y2"  placeholder="8-12位字母及数字">
+        <h4></h4>
+		</div>
+		
+        <div id="three">
+        <h3 class="three"><span>*</span>确认密码：</h3>
+        <input type="password" id="Y3" placeholder="确认密码">
+        <h4></h4>
+        </div>
+     
+       <div class="button">
+       <input class="a-1" id="a-1" type="submit" value="完成提交">
+       </div>
+    </form>
+	
+</div>
+
+<!--找回密码  内容  end-->
+
+<!--结尾-->
+	<div class="yqlj">
+		<ul>
+			<li><a href="###">友情链接 ：</a></li>
+			<li><a href="###">淘宝</a></li>
+			<li><a href="###">京东</a></li>
+			<li><a href="###">支付宝</a></li>
+			<li><a href="###">一淘</a></li>
+			<li><a href="###">天天低价</a></li>
+			<li><a href="###">畅选无忧</a></li>
+			<li><a href="###">正品行货</a></li>
+			<li><a href="###">精致服务</a></li>
+			<li><a href="###">多仓直发</a></li>
+			<li><a href="###">极速配送</a></li>
+			<li><a href="###">品类齐全</a></li>
+		</ul>
+	</div>
+		
+	<!--底部-->	
+		<div class="db">
+			<ul>
+				<li>关于我们 | 合作伙伴 | 营销中心 | 手机商城 | 投诉举报 | 联系客服 | 联系我们 | 法律声明 </li>
+				<li>网络文化经营许可证 ：[2013]0268-027号 | 沪ICP证 ：070359号 | 信息网络传播视听节目许可证 ：1109364号</li>
+				<li>违法及不良信息举报电话 ：4006561155 | Copyright 版权所有 ：沃蓝信息科技有限公司</li>
+			</ul>
+			
+		</div>
+
+
+
+</div>
+	</body>
+</html>
+

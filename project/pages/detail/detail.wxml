@@ -1,0 +1,7 @@
+<!--pages/detail/detail.wxml-->
+<view class='content'>
+  <textarea value='{{info.content}}' bindinput='setText' class='textarea' maxlength="-1"></textarea>
+</view>
+<view class='bottom'>
+  <view class='copy_button' bindtap='doCopy'>复制</view>
+</view>

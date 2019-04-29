@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0020)http://sao.la/0tyjc5 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>{$appinfo.name}下载 - 乐仁</title>
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Cache-Control" content="no-transform ">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Api/css/app_message.css">
+<script>
+
+function show(){
+document.getElementById("div").style.display="";
+}
+function hidden(){
+document.getElementById("div").style.display="none";
+}
+</script>
+
+</head>
+
+<body style="outline: none; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);  -webkit-focus-ring-color: rgba(0, 0, 0, 0)；">
+
+<div style="display:none;">
+<img src="__PUBLIC__/bxg/ic_launcher.png"/>
+</div>
+
+<if condition="$is_weixin eq 1">
+<div class="tishi">微信中,请使用浏览器打开下载</div>
+
+</if>
+<div class="content">
+   <div class="kongbai"></div>
+
+
+
+<if condition="$is_weixin eq 1">
+    <div class="name" style="margin:0px;padding:15px 0px 0px 47.59375px;font-size:24px;color:#FFFFFF;text-align:center;font-family:'microsoft yahei', 'Arial Black', Gadget, sans-serif;background-color:#233648;">
+	{$appinfo.name}
+</div>
+<div class="xiazai_1" id="ios_error" style="margin:0px;padding:10px 0px 0px 60px;text-align:center;color:#FFFFFF;font-family:'microsoft yahei', 'Arial Black', Gadget, sans-serif;font-size:medium;background-color:#233648;">
+	<img src="http://sao.la/images/phone.png" style="width:25px;" />微信中无法下载,请点击右上角菜单选择在浏览器中打开.
+</div>
+
+
+<else/>
+
+<div class="name">{$appinfo.name}</div>
+
+	  <div class="xiazai" id="iphone" style="display:;">
+      <a href="javascript:void(0)" onclick="other(1);" id="ios_down"><img src="__PUBLIC__/bxg/ios.png"><span>点击下载</span></a>
+      </div>
+      
+      <div class="xiazai"  id="android" style="display:;">
+      <a href="javascript:void(0)" onclick="other(2);" id="android_down"><img src="__PUBLIC__/bxg/android.png"><span>点击下载</span></a>
+      </div>
+      
+	 <div class="xiazai_1" style="display:none;" id="ios_error"><img src="__PUBLIC__/bxg/android2.png">只支持Android系统</div>
+     
+<div class="xiazai_1" style="display:none;" id="android_error"><img src="__PUBLIC__/bxg/ios1.png">只支持iOS系统</div>
+
+      <div id="div" class="xianshi" style="display: none" onmouseout="hidden();"><img src="__PUBLIC__/bxg/xiaz.png">正在下载...</div>
+
+
+
+
+</if>
+
+
+
+
+  
+      
+      
+  
+	  
+	  <input type="hidden" id="ios_message" value="{$appinfo.iphone_app_url}">
+	   <input type="hidden" id="android_message" value="{$appinfo.android_app_url}">
+	   <input type="hidden" id="ipad_message" value="{$appinfo.ipad_app_url}">
+   <div class="bot"><a href="#"></a><a href="#"> © 乐仁-技术支持</a></div>
+
+<script>
+	function ios(){
+		ios	= document.getElementById("ios_message").value;
+		if(ios){
+			
+			document.getElementById("ios_error").style.display="none";
+			document.getElementById("android_error").style.display="none";
+			document.getElementById("div").style.display="";
+			document.getElementById("ios_down").style.display="none";
+			window.location.href="{$appinfo.iphone_app_url}";
+		}else{
+			document.getElementById("ios_error").style.display="";
+		}
+	}
+	function android(){
+		android	= document.getElementById("android_message").value;
+		if(android){
+			document.getElementById("ios_error").style.display="none";
+			document.getElementById("android_error").style.display="none";
+			document.getElementById("div").style.display="";
+			document.getElementById("android_down").style.display="none";
+			window.location.href="{$appinfo.android_app_url}";
+		}else{
+			document.getElementById("android_error").style.display="";
+		}
+	}
+	function ipad(){
+		
+		ipad	= document.getElementById("ipad_message").value;
+		if(ipad){
+			document.getElementById("ios_error").style.display="none";
+			document.getElementById("android_error").style.display="none";
+			document.getElementById("div").style.display="";
+			document.getElementById("ipad_down").style.display="none";
+			window.location.href="{$appinfo.ipad_app_url}";
+		}else{
+			document.getElementById("ipad_error").style.display="";
+		}
+	}
+
+	function other(val){
+		
+		ios		= document.getElementById("ios_message").value;
+		android	= document.getElementById("android_message").value;
+
+		document.getElementById("ios_error").style.display="none";
+		document.getElementById("android_error").style.display="none";
+		document.getElementById("div").style.display="";
+		document.getElementById("ios_down").style.display="none";
+		document.getElementById("android_down").style.display="none";
+		if(val==1){
+			window.location.href="{$appinfo.iphone_app_url}";		
+		}else{
+			// window.location.href="http://surl.qq.com/S9THDy?qbsrc=57&asr=4286";	
+			window.location.href="{$appinfo.android_app_url}";	
+		}
+					
+	}
+	
+	
+<if condition="$is_weixin eq 0">
+var pla=ismobile(1);
+		if(pla==0){
+			document.getElementById("android").style.display="none";
+			//window.location.href="https://itunes.apple.com/cn/app/id1033729854?mt=8";		
+		}else{
+		
+			document.getElementById("iphone").style.display="none";
+			//window.location.href="http://surl.qq.com/S9THDy?qbsrc=57&asr=4286";	
+		}
+</if>	
+	/**
+ * [isMobile 判断平台]
+ * @param test: 0:iPhone    1:Android
+ */
+function ismobile(test){
+    var u = navigator.userAgent, app = navigator.appVersion;
+    if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+     if(window.location.href.indexOf("?mobile")<0){
+      try{
+       if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
+        return '0';
+       }else{
+        return '1';
+       }
+      }catch(e){}
+     }
+    }else if( u.indexOf('iPad') > -1){
+        return '0';
+    }else{
+        return '1';
+    }
+};
+</script>
+</div></body></html>

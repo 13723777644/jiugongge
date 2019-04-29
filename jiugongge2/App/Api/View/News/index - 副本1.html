@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title><if condition="$category.name neq '' ">{$category.name}<else /> 新闻资讯</if>_商城{$app_name}</title>
+		<link rel="stylesheet" href="__PUBLIC__/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/css/zixunliebiao.css" />
+		<!-- <link rel="stylesheet" href="__PUBLIC__/css/style.css" /> -->
+		<link rel="stylesheet" href="__PUBLIC__/css/index.css" />
+		<script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/js/zixunliebiao.js"></script>
+
+	</head>
+	<body>
+
+
+<include file="Public:header" />
+<div class="content">	
+<!--首页  资讯-->
+<div class="shouye"><a href="__APP__/Index/index/">首页</a>><if condition="$category.name neq '' "><volist name="hang" id="da"><a href="__URL__/index/pid/{$da.id}">{$da.name}></a></volist><else /> 新闻资讯</if></div>
+
+<!--咨询分类-->
+<div class="zixunneirong">
+	<div class="zixun_zuo">	
+		<div class="zixun_zi"><img src="__PUBLIC__/img/zixu.jpg" alt="" /><em>资讯分类</em></div>
+		 <div class="all-goods">
+      	  <volist name="fen" id="cats">
+        <div class="item btnone">
+          <div class="product">
+            <h3> <a href="__URL__/index/pid/{$cats.id}">{$cats.name}</a> </h3>
+            <s style="display:block;"></s> </div>
+          <div class="product-wrap posone"> 
+            <!--公司动态-->
+            <div class="cf">
+              <div class="fl wd252 pr20">
+               <volist name="cats.subclass" id="cats1">
+                <h2><a href="__URL__/index/pid/{$cats1.id}">{$cats1.name}</a></h2>
+                <ul class="cf">
+                <volist name="cats1.subclass" id="cats2">
+                  <li> <a href="__URL__/index/pid/{$cats2.id}">{$cats2.name}</a></li>
+                 </volist>
+                </ul>
+                </volist>
+
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        </volist>
+        
+       
+      </div>
+	
+	
+	</div>
+
+
+    
+    
+    <div class="zixun_you">
+    	<div class="liebiao">
+    		<p><if condition="$category.name neq '' "> {$category.name}<else /> 新闻资讯</if></p>
+    		<div class="liebiao_sousuo">
+    		<form class="form-search" action="__URL__/index/pid/{$pid}" method="post" >
+    			<input type="text" name="keywords" placeholder="请输入搜索内容"/>
+    			<button type="submit"  name="sub">确定</button>
+    		</form>
+    		</div>
+    <div id="paginationdemo" class="demo"> 			
+       <div class="page">
+         <ol>
+         <!--存在下级分类  end-->
+         <volist name="li" id="news">
+           <volist name="news" id="news1">
+       	   <li><a href="__URL__/xi/id/{$news1.id}">{$news1.name}<em>{$news1.addtime|date='Y-m-d',###}</em></a></li>
+       	  </volist>
+       	   </volist>
+       	   <!--结尾-->
+       	   <!--为最后一级分类  end-->
+       	   <notempty name="lis1">
+       	    <volist name="lis1" id="ne">
+       	   <li><a href="__URL__/xi/id/{$ne.id}">{$ne.name}<em>{$ne.addtime|date='Y-m-d',###}</em></a></li>
+       	   </volist>
+       	   </notempty>
+       	   <!--结尾-->
+         </ol>
+       </div>   
+   <div class="yeshu">  
+       <div id="pagnation">{$page}</div>
+       	
+    </div> 
+    </div>			
+    			
+    		
+    	</div>
+    </div>
+
+</div>
+<!--咨询分类   end-->
+
+<!--结尾-->
+<div class="xian">	
+	
+	</div>
+	
+<include file="Public:footer" />
+		
+
+		
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>

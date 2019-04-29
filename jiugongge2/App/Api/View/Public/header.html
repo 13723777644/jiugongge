@@ -1,0 +1,451 @@
+
+<script src="__PUBLIC__/home/js/gong.js"></script>
+<div class="toubu">	
+  <div class="dingbu">
+	<div class="db_zuo">
+
+	<if condition="$name eq '' "> 
+		<span>欢迎光临<em><a href="{:U('User/logo?key=')}{$appkey}"> 亲,请登录</em></a></span>
+		<span>&nbsp;&nbsp;<a href="{:U('User/register?key=')}{$appkey}">免费注册</a></span>
+	
+	<else />
+	  <span>欢迎光临<em><a>{$name}</a></em></span>
+	  <span><a href="{:U('User/quit?key=')}{$appkey}">退出</a></span>
+	</if>
+	</div>
+	<div class="db_you">
+		<div class="subNavBox">	
+			<div class="subNav currentDd icon1"><img src="__PUBLIC__/home/images/icon/my1.png" id="small_icon1" /> 我的信息<img src="__PUBLIC__/home/images/aaa.jpg">&nbsp;
+				<ul class="navContent" style="display:none">
+					<li><a href="{:U('User/user?key=')}{$appkey}">信息管理</a></li>
+					<li><a href="{:U('User/address?key=')}{$appkey}">我的地址管理</a></li>	
+				</ul>
+			</div>
+		</div>
+		
+    
+<!--   <span class="span1">|</span> -->
+    
+    <div class="subNavBox">
+	<div class="subNav currentDd icon2"><a href="{:U('User/orders?key=')}{$appkey}" id="order" style="color:#555555"><img src="__PUBLIC__/home/images/icon/order1.png" id="small_icon2" /> 我的订单</a>
+	
+	</div>		
+    </div>
+	 <!--  <span class="span2">|</span> -->
+	
+	<div class="subNavBox">
+	<div class="subNav currentDd  icon3"><img src="__PUBLIC__/home/images/icon/love1.png" id="small_icon3" /> 我的关注<img src="__PUBLIC__/home/images/aaa.jpg">
+	<ul class="navContent " style="display:none">
+			<li><a href="{:U('User/collection?key=')}{$appkey}">关注产品</a></li>
+			<li><a href="{:U('User/shangchang?key=')}{$appkey}">关注店铺</a></li>
+	</ul>
+	</div>
+    </div>
+    <!--    <span class="span3">|</span> -->
+	
+     
+    <div class="subNavBox">
+	<div class="subNav currentDd icon4"><img src="__PUBLIC__/home/images/icon/app1.png" id="small_icon4" /> 全网APP端<img src="__PUBLIC__/home/images/aaa.jpg">
+	<ul class="navContent ara" style="display:none">
+			<if condition="$er.img neq '' "><li><a style="height:90px; width:150px;"><img src="__DATA__/{$er.img}" width="80" height="80" style="vertical-align:middle;"/>iphone</a></li></if>
+			
+			<if condition="$era.img neq ''"><li><a style="height:90px;width:150px;"><img src="__DATA__/{$era.img}" width="80" height="80" style="vertical-align:middle;"/>android</a></li></if>
+		
+			
+	</ul>
+	</div>
+    </div>
+    <!--   <span class="span4">|</span> -->
+     <div class="subNavBox">
+	<div class="subNav currentDd icon5"><img src="__PUBLIC__/home/images/icon/weixin1.png" id="small_icon5" /> 全网微信端<img src="__PUBLIC__/home/images/aaa.jpg">
+	<ul class="navContent ara" style="display:none">
+			<if condition="$weixin.img neq ''"><li><a style="height:90px; width:150px;"><img src="__DATA__/{$weixin.img}" width="80" height="80" style="vertical-align:middle;"/></a></li></if>
+		
+			
+	</ul>
+	</div>
+    </div>
+    <!--   <span class="span5">|</span> -->
+    <div class="subNavBox">
+	<div class="subNav currentDd icon6"><img src="__PUBLIC__/home/images/icon/partner1.png" id="small_icon6" /> 商家服务<img src="__PUBLIC__/home/images/aaa.jpg">&nbsp;
+	<ul class="navContent " style="display:none">
+			<li><a href="http://wpa.qq.com/msgrd?v=3&uin={$q.concent}&site=qq&menu=yes" target="_black">在线客服</a></li>
+			
+	</ul>
+	</div>
+    </div>
+     <!--  <span class="span6">|</span> -->
+	</div>
+	
+<!-- 滑动搜索栏 -->
+<div class="fix-top" style="z-index:-2;top:-50px;">
+    <div class="inner">
+        <form class="search" action="{:U('Product/index?key=')}{$appkey}" method="post">
+            <div class="search-key">
+                <input type="text" placeholder="请输入搜索产品"  style="border:3px solid #{$pcnav_color}" class="fn-tinput" name="keywords">
+            </div>
+            <button type="submit" name="submit"  style="background-color: #{$pcnav_color};" >搜索</button>
+        </form>
+    </div>
+    <div class="fix-top-mask"></div>
+</div>
+<div>
+    <div style="width:100%;display:block; font-size:10pt; line-height:150%; clear:both;">
+
+    </div>
+</div>
+<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.9.0/jquery.min.js"></script>
+<script>
+$(".icon1").mouseover(function(){
+	$("#small_icon1").attr("src","__PUBLIC__/home/images/icon/my.png");
+});
+$(".icon1").mouseout(function(){
+	$("#small_icon1").attr("src","__PUBLIC__/home/images/icon/my1.png");
+});
+
+$(".icon2").mouseover(function(){
+	$("#small_icon2").attr("src","__PUBLIC__/home/images/icon/order.png");
+});
+$(".icon2").mouseout(function(){
+	$("#small_icon2").attr("src","__PUBLIC__/home/images/icon/order1.png");
+});
+
+$(".icon3").mouseover(function(){
+	$("#small_icon3").attr("src","__PUBLIC__/home/images/icon/love.png");
+});
+$(".icon3").mouseout(function(){
+	$("#small_icon3").attr("src","__PUBLIC__/home/images/icon/love1.png");
+});
+
+$(".icon4").mouseover(function(){
+	$("#small_icon4").attr("src","__PUBLIC__/home/images/icon/app.png");
+});
+$(".icon4").mouseout(function(){
+	$("#small_icon4").attr("src","__PUBLIC__/home/images/icon/app1.png");
+});
+
+$(".icon5").mouseover(function(){
+	$("#small_icon5").attr("src","__PUBLIC__/home/images/icon/weixin.png");
+});
+$(".icon5").mouseout(function(){
+	$("#small_icon5").attr("src","__PUBLIC__/home/images/icon/weixin1.png");
+});
+$(".icon6").mouseover(function(){
+	$("#small_icon6").attr("src","__PUBLIC__/home/images/icon/partner.png");
+});
+$(".icon6").mouseout(function(){
+	$("#small_icon6").attr("src","__PUBLIC__/home/images/icon/partner1.png");
+});
+
+
+    $(function () {
+
+        $(".fix-top").fixedPointShow({
+            //zIndex:10000,   //Z轴
+           //  st:40         //滚动多少距离的时候出现导航
+        });
+    })
+    ; (function ($) {
+        /*
+        * 天猫滚动一定距离顶部显示搜索
+        * 作者：懒人建站http://www.51xuediannao.com/
+        * 配置参数有两个
+        * zIndex:1000,        //Z轴
+        * st:600               //滚动多少距离的时候出现导航
+        */
+        var tools = {
+            /*
+             窗体改变(scroll resize)延时执行事件
+             示例：
+             $lr().TimeOutRun($(window),"scroll",runFun,2000);	//TimeOutRun(事件,要运行的函数名,间隔时间)
+             function runFun(){ alert("哈哈") }
+             */
+            TimeOutRun: function (obj, Event, callBack, time) {
+                var timeOutId = "",
+                        reStart = true;
+                obj.on(Event, function () {
+                    clearTimeout(timeOutId);
+                    if (reStart) {
+                        timeOutRun(time)
+                    }
+                });
+                function timeOutRun(time) {
+                    reStart = false;
+                    var timeOutId = setTimeout(function () {
+                        reStart = true;
+                        callBack()
+                    }, time);
+                }
+            },
+            log: function (log) {
+                if (window.console) {
+                    return console.log(log)
+                }
+            }
+
+        };
+        function FixedPointShow($el, config) {
+            var def = {
+                zIndex: -2,        //Z轴
+                st: 150               //滚动多少距离的时候出现导航
+            };
+            this.opts = $.extend(true, def, config);
+            this.el = $el;
+        }
+        FixedPointShow.prototype = {
+            scrollNav: function () {
+                var isOpen = false, This = this,
+                    fixTopH = This['el'].outerHeight();
+
+                This['el'].css({ "z-index": this.opts.zIndex });
+
+                tools.TimeOutRun($(window), "scroll", function () {
+                    var st = $(this).scrollTop();
+                    if (st > This.opts.st) {
+                        !isOpen && This.el.animate({ "top": 40 }, 400, function () {
+                            isOpen = true;
+                        });
+                    } else {
+                        This.el.animate({ "top": -fixTopH }, 400, function () {
+                            isOpen = false;
+                        });
+                    }
+                    tools.log(st)
+                }, 200)
+            }
+        };
+        FixedPointShow.prototype.constructor = FixedPointShow;
+
+        $.extend($.fn, {
+            fixedPointShow: function (config) {
+                //IE6 返回
+                if (!("maxHeight" in document.createElement("div").style)) {
+                    $(this).remove();
+                    return
+                }
+                var fixedPointNav = new FixedPointShow($(this));
+                fixedPointNav.scrollNav();
+                return this;
+            }
+        });
+    }(jQuery));
+
+
+</script>
+	
+	<div id="content1"></div>
+	
+	
+	
+	
+<script type="text/javascript">
+$(function(){
+	$("navContent").hide()
+$(".subNav").each(function(i){
+	$(".subNav").eq(i).hover(function(){
+		//$(".subNav>img").eq(i).attr("src","__PUBLIC__/home/images/bbb.jpg");	
+		$(".subNav").eq(i).find("ul").show();	
+  },function(){	
+//$(".subNav>img").eq(i).attr("src","__PUBLIC__/home/images/aaa.jpg");	
+  	$(".subNav").eq(i).find("ul").hide();
+  });
+				
+ });
+});
+</script>		
+<!-- <script>	
+$(function(){
+	$("navContent").hide()
+$(".subNav").each(function(i){
+	$(".subNav").eq(i).hover(function(){
+		$(".subNav").eq(i).addClass("currentDt");
+		$(".subNav").eq(i).find("ul").show();	
+  },function(){	
+  	$(".subNav").eq(i).removeClass("currentDt");
+  	$(".subNav").eq(i).find("ul").hide();
+  });
+				
+ });
+});
+</script> -->
+<!--  修改      六级菜单-->
+<script type="text/javascript">
+	stuHover = function() {
+ var cssRule;
+ var newSelector;
+ for (var i = 0; i < document.styleSheets.length; i++)
+  for (var x = 0; x < document.styleSheets[i].rules.length ; x++)
+   {
+   cssRule = document.styleSheets[i].rules[x];
+   if (cssRule.selectorText.indexOf("LI:hover") != -1)
+   {
+     newSelector = cssRule.selectorText.replace(/LI:hover/gi, "LI.iehover");
+    document.styleSheets[i].addRule(newSelector , cssRule.style.cssText);
+   }
+  }
+ var getElm = document.getElementById("nav").getElementsByTagName("LI");
+ for (var i=0; i<getElm.length; i++) {
+  getElm[i].onmouseover=function() {
+   this.className+=" iehover";
+  }
+  getElm[i].onmouseout=function() {
+   this.className=this.className.replace(new RegExp(" iehover\\b"), "");
+  }
+ }
+}
+if (window.attachEvent) window.attachEvent("onload", stuHover);
+</script>
+		
+  </div>
+</div>
+<style>
+	.header .sousuok ul.type li.curr{background-color:#<?php echo $pcnav_color;?>;color:white;}
+</style>
+<div class="content">
+<script>
+$(function(){
+$('.type li').click(function() {
+    $(this).addClass('curr').siblings().removeClass('curr');
+    $('#searchtype').val($(this).attr('num'));
+    var keyword=$('#keyword').val();
+    if($('#searchtype').val()==0){
+    	//产品搜索
+    	 $('#searchForm').attr("action","{:U('Product/index?key=')}{$appkey}");
+    	 
+    }else if($('#searchtype').val()==1){
+    	//店铺搜索
+    	 $('#searchForm').attr("action","{:U('Shopping/shopsList?key=')}{$appkey}");
+    	
+    }else{
+		$('#searchForm').attr("action","{:U('News/index?key=')}{$appkey}");
+	}
+    
+    
+});
+})
+</script>
+	<!--头部 -->
+		<div class="header">
+	 	<!-- logo 图-->
+		  <div class="logo">
+		  	<a href="{:U('Index/index?key=')}{$appkey}"><img src="__DATA__/{$shop_logo.img}" alt="" /></a>
+		  </div>
+		<!-- 搜索框--> 
+	<div class="sousuok">		  	
+		   <ul class="type">
+		      <li class="curr" num="0">宝贝 </li>
+		     <li num="1">店铺</li>
+			 <li num="2">资讯</li>
+		   </ul>
+		   <form class="mallSearch-form" method="post" name="searchForm" id="searchForm" action="{:U('Product/index?key=')}{$appkey}">
+		   <input type="hidden" name="type" id="searchtype" value="0" >
+		  		<div class="input">
+		  			<input type="text" name="keywords" style="border:3px solid #{$pcnav_color}" placeholder="请输入搜索内容"/ id="sea"><button style="background-color:#{$pcnav_color};border:3px solid #{$pcnav_color}"  class="btns">搜索</button>
+		  		</div>
+		  </form>
+		   <script>
+		       $(function(){
+			        $(".btns").click(function(){
+					      var sea = $("#sea").val();
+                          if(sea==""){
+						      alert("请输入要搜索的内容");
+							  return false;
+						  }						  
+					})
+			   })
+		  </script>	
+		</div>
+		<!--购物车-->  
+		  <div class="gwc">
+		  	 <div class="gwc_gw">
+		  	 	<em><a href="{:U('Shopping/index?key=')}{$appkey}">我的购物车&nbsp;&nbsp;></a></em>
+		  	<div class="yc">
+		     <span><img src="__PUBLIC__/home/images/gwc.png" alt="" /></span>
+		     <p><if condition="$count eq 0 ">购物车中还没有商品，赶紧选购吧！ <else /> 购物车中共{$count}件商品</if></p>
+		     </div>		  	 		  	 	
+		  	 </div>
+	<script>
+		$(".gwc_gw").mouseover(function(){
+			$(".yc").show();
+		})
+		$(".gwc_gw").mouseout(function(){
+			$(".yc").hide();
+		})
+	</script>	  	 
+		  </div>	  
+		</div>
+		<if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+    <style>
+
+      #nav ul li a{width:120px;}
+      .biaoti .bt_btl ul li{
+        width:120px;
+      }
+      .biaoti .bt_btl li a{
+        width:120px;
+      }
+      .biaoti .bt_btl li a:hover, #lanrenzhijia li a.fly:hover {color:white;background-color: #<?php echo $ahover_color; ?>;opacity: 0.9;border-left: 1px solid #e4e4e4;border-right: 1px solid #e4e4e4;width:120px;}
+      #nav li:hover ul.sub li a:hover {background:#<?php echo $ahover_color; ?>; color:#fff;}
+
+      #nav li:hover ul.sub li:hover ul.sub1 li a:hover {background-color:#<?php echo $ahover_color; ?>; color:#fff;}
+      #nav li:hover ul.sub  li:hover ul.sub1 li:hover  ul.sub2 li a:hover{background-color:#<?php echo $ahover_color; ?>; color:#fff;}
+       .biaoti .bt_btl a {font-family:"黑体";}
+	 </style>
+    <else /> 
+    <style>
+      .biaoti .bt_btl li a:hover, #lanrenzhijia li a.fly:hover {color:white;background-color: #<?php echo $ahover_color; ?>;opacity: 0.9;border-left: 1px solid #e4e4e4;border-right: 1px solid #e4e4e4;}
+      #nav li:hover ul.sub li a:hover {background:#<?php echo $ahover_color; ?>; color:#fff;}
+      #nav li:hover ul.sub li:hover ul.sub1 li a:hover {background-color:#<?php echo $ahover_color; ?>; color:#fff;}
+      #nav li:hover ul.sub  li:hover ul.sub1 li:hover  ul.sub2 li a:hover{background-color:#<?php echo $ahover_color; ?>; color:#fff;}
+       .biaoti .bt_btl a {font-family:"黑体";}   
+   </style>
+    </if>
+			<div class="biaoti">
+			<div class="bt_btl" style="background-color:#{$pcnav_color}">
+				<ul id="nav" style="background-color:#{$pcnav_color}">
+                  <li><a href="{:U('Index/index?key=')}{$appkey}">首页</a></li>
+					 <li class="top"><a href="{:U('Product/index?key=')}{$appkey}" id="contacts"><span class="down">商品分类</span></a>
+           <ul class="sub" style="background-color: #{$pcnav_color};border: 1px solid #e4e4e4;">
+           <volist name="catall" id="cats">
+           <li><a href="{:U('Product/index',array('pid'=>$cats['id'],'key'=>$appkey))}" class="fly">{$cats.name|msubstr=0,9}</a>
+            <notempty name="cats.subclass">
+            	<ul class="sub1" style="background-color: #{$pcnav_color};">
+
+           	    <volist name="cats.subclass" id="cats2">
+           		    <li><a href="{:U('Product/index',array('pid'=>$cats2['id'],'key'=>$appkey))}" class="fly">{$cats2.name|msubstr=0,9}</a>
+        		         <notempty name="cats2.subclass">
+           			       <ul class="sub2" style="background-color: #{$pcnav_color};">
+           			         <volist name="cats2.subclass" id="cats3">
+           				         <li><a href="{:U('Product/index',array('pid'=>$cats3['id'],'key'=>$appkey))}" class="fly">{$cats3.name|msubstr=0,9}</a>
+        				     
+   				</li>
+   					</volist>				  
+   		        
+   			</ul>
+   		 </notempty>
+   		</li>
+   	</volist>	
+   		
+   	</ul>
+ 	</notempty>
+   </li>
+  </volist>
+  </ul>
+ </li>
+				    
+              <li><a href="{:U('Shopping/shopsList',array('key'=>$appkey))}">商铺</a></li>
+              <!-- <if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+              
+              <li><a href="{:U('News/xi',array('id'=>53,'key'=>$appkey))}">涂料商会</a></li>
+              <li><a href="{:U('News/xi',array('id'=>54,'key'=>$appkey))}">金融</a></li>
+              <li><a href="{:U('News/xi',array('id'=>55,'key'=>$appkey))}">跨境业务</a></li>
+            </if> -->
+					<volist name="cat" id="cats">
+					<li><a href="{:U('Product/index',array('pid'=>$cats['id'],'key'=>$appkey))}">{$cats.name}</a></li>
+			     </volist>
+				 
+				</ul>
+			</div>
+			</div>
+		</div>
+			

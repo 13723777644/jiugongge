@@ -1,0 +1,129 @@
+/* pages/todo/todo.wxss */
+.photo_layout {
+  width: 100%;
+  height: 480rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ECECEC;
+  position: relative;
+}
+.tips {
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #FED943;
+  background-color: #fff;
+  font-size: 26rpx;
+  position: absolute;
+  right: 50rpx;
+  top: 20rpx;
+  box-shadow: 2px 2px 5px #FED943;
+}
+.textarea {
+  border: 1rpx solid #ECECEC;
+  width: 90%;
+  height: 400rpx;
+  margin: 0 auto;
+  font-size: 32rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.eng_textarea {
+  border: 1rpx solid #ECECEC;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 32rpx;
+  padding: 10rpx;
+}
+.content {
+  margin-top: 40rpx;
+  margin-bottom: 100rpx;
+}
+.textarea_button {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.edit {
+  font-size: 32rpx;
+  width: 150rpx;
+  height: 50rpx;
+  border-top: 1rpx solid #999;
+  border-left: 1rpx solid #999;
+  border-right: 1rpx solid #999;
+  color: #000;
+  text-align: center;
+  line-height: 50rpx;
+}
+.show_all {
+  font-size: 32rpx;
+  width: 150rpx;
+  height: 50rpx;
+  border-top: 1rpx solid #FED943;
+  border-left: 1rpx solid #FED943;
+  border-right: 1rpx solid #FED943;
+  color: #4E81EC;
+  text-align: center;
+  line-height: 50rpx;
+}
+.button_layout {
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.bottom_button {
+  /* width: 150rpx; */
+  /* height: 70rpx; */
+  padding: 0 30rpx;
+  border-radius: 50rpx;
+  background-color: #FED943;
+  color: #000;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+}
+
+camera {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.take_photo_out {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  margin-left: -60rpx;
+  bottom: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.take_photo_in {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 4rpx solid #000;
+}
+.cover_img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.defeat_tips {
+  font-size: 30rpx;
+  padding: 40rpx;
+  text-align: center;
+}

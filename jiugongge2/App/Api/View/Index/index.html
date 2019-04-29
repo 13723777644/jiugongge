@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{$app_name}</title>
+<script src="__PUBLIC__/home/js/jquery-1.9.1.min.js"></script>
+<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+<script src="__PUBLIC__/home/js/index.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+<link rel="stylesheet" href="__PUBLIC__/home/css/index.css" />
+</head>
+
+<body >
+<!--顶部--> 
+
+<!-- include file="Public:ind_head"  -->
+<include file="Public:ind_head" />
+<div class="content" style="min-width:1000px;">
+<!--标题部分-->
+<style type="text/css">
+  .bt_tw .bt_jdt{
+  	height:350px;
+  }
+  .bt_tw .bt_wz .zi{
+  	height:200px;
+  }
+  .bt_tw .tp{
+  	/*display:none;*/
+  	height:116px;
+  }
+  .slider_img{
+  	height:350px;
+  }
+  .bt_tw .bt_wz .top{
+  	height:30px;
+  	line-height:30px;
+  }
+  .tubiao ul.tubiaoul>li {
+  	overflow:hidden;
+  	height:105px;
+  }
+
+
+  .ggt{
+  	padding-top:30px;
+  	padding-bottom:30px;	
+  }
+
+  .spzq1{
+  	height:307px;
+  	overflow:hidden;
+  }
+
+  .menu_con .#menu_con1{
+  	height:250px;
+  }
+</style>
+<div class="biaoti">
+  <div class="bt_tw"> 
+    <!--首页焦点轮播图-->
+    <div class="bt_jdt">
+      <ul class="slider">
+        <volist name="adv" id="ad">
+          <if condition="$ad.type eq 'product'">
+            <li><a href="{:U('Product/xi',array('id'=>$ad['url'],'key'=>$appkey))}"><img src="__DATA__/{$ad.img}" class="slider_img" ></a></li>
+            <elseif condition="$ad.type eq 'news'"/>
+            <li><a href="{:U('News/xi',array('id'=>$ad['url'],'key'=>$appkey))}"><img src="__DATA__/{$ad.img}" class="slider_img"></a></li>
+            <elseif condition="$ad.type eq 'partner'"/>
+            <li><a href="{:U('Shopping/shopDetail',array('id'=>$ad['url'],'key'=>$appkey))}"><img src="__DATA__/{$ad.img}" class="slider_img" ></a></li>
+            <elseif condition="$ad.type eq 'url'"/>
+            <li><a href="{$ad.url}"><img src="__DATA__/{$ad.img}"  class="slider_img"></a></li>
+            <else />
+            <li><img src="__DATA__/{$ad.img}" class="slider_img"></li>
+          </if>
+        </volist>
+      </ul>
+      <ul class="num">
+        <li class="on"></li>
+        <?php for ($i=0; $i < count($adv)-1; $i++) { ?>
+          <li></li>
+        <?php } ?>
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+    <!--首页焦点轮播图   end-->
+    
+    <!--右边商城资讯-->
+    <div class="bt_wz">
+      <div class="top"> <em>商城资讯</em> <span><a href="{:U('News/index',array('key'=>$appkey))}">更多  ></a></span> </div>
+      <div class="zi">
+        <ul>
+          <volist name="news" id="ne">
+            <li><strong>[{$ne.cname}]</strong><a href="{:U('News/xi',array('id'=>$ne['id'],'key'=>$appkey))}" title="{$ne.name}">{$ne.name|msubstr=0,17}</a></li>
+          </volist>
+        </ul>
+      </div>
+      <!--右边商城资讯 下面广告图-->
+      <div class="tp">
+        <if condition="$ad1.type eq 'product'"><a href="{:U('Product/xi',array('id'=>$ad1['url'],'key'=>$appkey))}"><img src="__DATA__/{$ad1.img}" ></a>
+          <elseif condition="$ad1.type eq 'news'"/>
+          <a href="{:U('News/xi',array('id'=>$ad1['url'],'key'=>$appkey))}"><img src="__DATA__/{$ad1.img}" ></a>
+          <elseif condition="$ad1.type eq 'partner'"/>
+          <a href="{:U('Product/index',array('did'=>$ad1['url'],'key'=>$appkey))}"><img src="__DATA__/{$ad1.img}" ></a>
+          <elseif condition="$ad1.type eq 'url'"/>
+          <a href="{$ad1.url}"><img src="__DATA__/{$ad1.img}" ></a>
+          <else />
+          <img src="__DATA__/{$ad1.img}" ></if>
+      </div>
+      <!--右边商城资讯下面广告图   end-->
+    </div>
+    <!--右边商城资讯   end-->
+  </div>
+</div>
+<div class="clearfix"></div>
+<!--标题部分   end-->
+
+<!--轮播图下面的广告图-->
+<div class="ggt">
+  <if condition="$youp.type eq 'product'"><a href="{:U('Product/xi',array('id'=>$youp['url'],'key'=>$appkey))}"><img src="__DATA__/{$youp.img}" ></a>
+    <elseif condition="$youp.type eq 'news'"/>
+    <a href="{:U('News/xi',array('id'=>$youp['url'],'key'=>$appkey))}"><img src="__DATA__/{$youp.img}" ></a>
+    <elseif condition="$youp.type eq 'partner'"/>
+    <a href="{:U('Product/index',array('did'=>$youp['url'],'key'=>$appkey))}"><img src="__DATA__/{$youp.img}" ></a>
+    <elseif condition="$youp.type eq 'url'"/>
+    <a href="{$youp.url}"><img src="__DATA__/{$youp.img}" ></a>
+    <else />
+    <img src="__DATA__/{$youp.img}" > </if>
+</div>
+<!--轮播图下面的广告图  end-->
+
+<div class="clearfix"></div>
+
+<!--商品推荐-->
+<div class="yptj">
+  <div class="yptj_top"> <!--<span></span>-->
+    <h5>商品推荐</h5>
+    <em>换一批 <img src="__PUBLIC__/home/images/1.jpg" alt="" style="vertical-align: bottom;"></em> </div>
+  <script> 
+	$(document).ready(function(){ 
+		$('.et:gt(0)').hide(); 
+		var page=0;
+		$('.yptj_top em').on('click',function(){
+			page++;
+			if(page==4){page=0;}
+			$.post("{:U('Index/index2?key=')}{$appkey}",{"p":page},function(data){
+				if(page<4){
+					$("#cc" ).html(data);
+				}
+			});
+   }); 
+});
+</script>
+  <div class = 'contents'>
+    <div class = 'et div1 show' id="cc">
+      <div id="div3" >
+        <ul>
+          <volist name="prot" id="prt">
+            <li><a href="{:U('Product/xi',array('id'=>$prt['id'],'key'=>$appkey))}">
+              <empty name="prt.logo"><img src="__DATA__/{$prt.photo_x}" alt="{$prt.name}" />
+                <else />
+                <img src="__DATA__/{$prt.logo}" alt="{$prt.name}" /></empty>
+              </a>
+              <div class="ppz">
+                <h1>{$prt.name|msubstr=0,10} </h1>
+                <br />
+                <em>
+                <if condition="($prt.price_yh eq 0) OR ($prt.price_yh eq '') "> 价格面议
+                  <else />
+                  ￥{$prt.price_yh}元</if>
+                </em></div>
+            </li>
+          </volist>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--商品推荐   end--> 
+
+<!--优品推荐-->
+<div class="clearfix"></div>
+<!--优品推荐   end--> 
+
+<!--分类名称、分类大图、小图、两个商品 显示-->
+<volist name="fea" id="fe">
+  <div class="spzq1"> 
+    <script>
+	//下划线更随
+       $(function(){
+           $("#nav{$a++} li a").on("mouseover",function(){
+               var $width=$(this).outerWidth();
+               var $offsetLeft=$(this).position().left;
+               $("#xuan{$j++}").width($width).stop().animate({
+                   left:$offsetLeft
+				   <!-- left:$offsetLeft -->
+               },200);
+           }).mouseout(function(){
+               $("#xuan{$r++}").width($(".{$w++}").width()).stop().animate({
+                   right:"1%"
+				   <!-- left:"47.5%" -->
+               },200);
+           })
+           
+       })
+    </script>
+    <div id="menu1" class="menu">
+      <div class="ul1">
+        <div class="nav_top1"><!-- <span class="one_img"><img src="{$think_path}{$fe.bz_3}" width="100%" height="100%"/></span>--> <a href="{:U('Product/index',array('pid'=>$fe['id'],'key'=>$appkey))}">
+          <h5>&nbsp;{$fe.name|msubstr=0,7}</h5>
+          </a> </div>
+      
+      </div>
+     
+    <!-- 产品分类中只有产品一级分类 -->
+    <div id="menu_con{$c++}" class="menu_con"> 
+    <script type="text/javascript">
+			$(document).ready(function () {
+				//点击按钮更换图片
+			  
+				//自动更换图片
+				function showImg(val) {
+					//获取图片数量
+					var imgCount = $(".divContent> p > a > .divImg{$fe.id}").length;
+					//显示索引为val的图片
+					$(".divContent> p > a > .divImg{$fe.id}").hide();
+					$(".divContent> p > a > .divImg{$fe.id}").eq(val).fadeIn(500);
+					if (num < (imgCount - 1)) {
+						num += 1;
+					}
+					else {
+						num = 0;
+					}
+					//3秒后重新绑定图片
+					setTimeout(function () { showImg(num); }, 4000);
+				}
+				//加载图片
+				var num = 0; showImg(num);
+			})
+		</script>
+          <div class="tag1 ta" style="display:block" id="tag">
+            <ul>
+              <!-- 产品分类下的小图 -->
+              <li class="img">
+                <div class="bigDiv">
+                  <div class="divContent">
+                    <p>
+                      <volist name="fe['simg']" id="sim" > 
+                        <if condition="$sim['pr_id'] eq 0">
+                        <a href="javascript:;"> <img src="__DATA__/{$sim.url}" alt="" class="divImg{$fe.id}"/> </a> 
+                        <else/>
+                        <a href="{:U('Product/xi',array('id'=>$sim['pr_id'],'key'=>$appkey))}"> <img src="__DATA__/{$sim.url}" alt="" class="divImg{$fe.id}"/> 
+                        </a> 
+                      </if>
+                      </volist>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <!-- 产品分类下的小图   end-->
+              <!-- 产品分类下的两个产品 -->
+              <div>
+                <volist name="fe['pro']" id="shp" >
+                  <li class="img1"><a href="{:U('Product/xi',array('id'=>$shp['id'],'key'=>$appkey))}">
+                    <empty name="shp.logo"><img class="ss" src="__DATA__/{$shp.photo_x}" alt="" />
+                      <else />
+                      <img class="ss" src="__DATA__/{$shp.logo}" alt="" /></empty>
+                    </a>
+                    <h1><span>{$shp.name|msubstr=0,9}</span><br />
+                      <em>
+                      <if condition="($shp.price_yh eq 0) OR ($shp.price_yh eq '') "> 价格面议
+                        <else />
+                        ￥{$shp.price_yh}元</if>
+                      </em></h1>
+                  </li>
+                </volist>
+              </div>
+              <!-- 产品分类下的两个产品   end-->
+            </ul>
+          </div>
+        </div>
+       
+    </div>
+  </div>
+  <!-- 产品分类下的大图 -->
+  <div class="ggt2">
+    <volist name="fe['bimg']" id="im" > 
+      <if condition="$im['pr_id'] eq '0' ">
+           <a href="javascript:;"><img src="__DATA__/{$im.url}" alt="" /></a> 
+      <else/>
+           <a href="{:U('Product/xi',array('id'=>$im['pr_id'],'key'=>$appkey))}"><img src="__DATA__/{$im.url}" alt="" /></a> 
+      </if>
+    </volist>
+  </div>
+  <!-- 产品分类下的大图   end-->
+</volist>
+<!--分类名称、分类大图、小图、两个商品 显示  end-->
+
+<!--分割线-->
+<div class="xian"> </div>
+<!--分割线  end-->
+
+<!--推荐企业-->
+<div class="tujiann-box">
+	<div class="tujiann">
+		<div class="titlee">推荐企业</div>
+		<div class="tubiao">
+		<ul class="tubiaoul">
+			<foreach name="shopList" item="listS">
+				<li>
+				<div class="news">
+				<div class="news-img"><a href="{:U('Shopping/shopDetail',array('id'=>$listS['id'],'key'=>$appkey))}"><img src="__DATA__/{$listS['logo']}" width="97" height="97"/></a></div>
+				<div class="news-content">
+					<ul>
+						<li><a href="{:U('Shopping/shopDetail',array('id'=>$listS['id'],'key'=>$appkey))}">{$listS['name']}</a></li>
+						<li style="margin-top: 12px;">企业分类：{$listS['category'][0]['name']}</li>
+						<li>{$listS.content|msubstr=0,20}</li>
+						<li>联系方式：{$listS['tel']}</li>
+					</ul>
+				</div>
+				</div>	
+				</li>
+			</foreach>
+		</ul>
+		</div>	
+	</div>			
+</div>
+<!--推荐企业   end-->
+
+<!--分割线-->
+<div class="xian"></div>
+<!--分割线  end-->
+
+<include file="Public:footer" />
+</body>
+</html>

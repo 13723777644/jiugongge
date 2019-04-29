@@ -1,0 +1,26 @@
+<!--pages/todo/todo.wxml-->
+<view class='photo_layout'>
+  <image bindtap='preview' src='{{photo}}'></image>
+  <view class='tips' bindtap='preview'>点击预览大图</view>
+</view>
+<view style='width:210rpx;margin:0 auto;margin-top:20rpx;' hidden='{{!defeat}}' class='bottom_button' bindtap='choosePhoto'>重新拍照</view>
+<view class='defeat_tips' hidden='{{!defeat}}'>请对准, 清晰取照</view>
+<view class='content' hidden='{{!text}}'>
+  <view class='button_layout' hidden='{{!text}}'>
+    <view class='bottom_button' bindtap='focus'>编辑</view>
+    <view class='bottom_button' bindtap='choosePhoto'>重新拍照</view>
+    <view class='bottom_button' bindtap='doCopy'>复制</view>
+  </view>
+  <textarea value='{{text}}' bindinput='setText' class='textarea' focus='{{focus}}' maxlength="-1"></textarea>
+  <view class='button_layout' hidden='{{!text}}'>
+    <view class='bottom_button' id='EN' bindtap='doTranslate'>中译英</view>
+    <view class='bottom_button' id='CH' bindtap='doTranslate'>英译中</view>
+
+  </view>
+  
+  <view class='textarea_button'>
+    <view class='edit' hidden='{{!translate}}'>翻译结果</view>
+  </view>
+  <textarea value='{{translate}}' bindinput='setTranslate' class='eng_textarea' hidden='{{!translate}}' maxlength="-1"></textarea>
+</view>
+<ad unit-id="adunit-c19a7d2ba50d3863"></ad>

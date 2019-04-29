@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>注册页</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/zhuce.css" />
+        <style type="text/css">
+          .zhuce #five .button{width: 130px;height: 45px;line-height: 45px;background-color: #C81622;color: white;border: none;font-family: "微软雅黑";border-radius:5px ;display:block;float:right;text-align: center;margin:0 60px 0 0;}
+        </style>
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		 <script src="__PUBLIC__/home/js/zhuce.js"></script> 
+	</head>
+	<body>
+
+<!--  完-->
+<include file="Public:header_zc" />
+<!--最大  div-->
+<div class="content">
+<!--注册   标题-->
+
+<div class="zhucebt">
+<div class="logo">
+	<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>欢迎注册</h1></div>
+</div>
+<!--注册   end-->
+
+<!--注册  内容-->
+
+<div class="zhuce">
+	<div class="my"><em>我已注册，现在就  <a href="{:U('User/logo?key=')}{$appkey}"><i>登录</i></a></em></div>
+	<form  method="post" action="{:U('User/doregister?key=')}{$appkey}" name="form1" >
+        <div id="one">
+        <h3 ><span></span>账号　　：</h3>
+        <input autocomplete="on" name="name" id="name " class="Y1" type="text" placeholder="6-18位，字母、数字、下划线" maxlength="18">
+        <h4></h4>
+     </div>
+     
+       <div id="two">
+        <h3 ><span></span>设置密码：</h3>
+        <input type="password" class="Y2" type="text" placeholder="6-18位，字母、数字、符号" name="pwd" id="pwd" maxlength="18">
+        <h4></h4>
+		</div>
+		
+       <div id="three">
+        <h3 ><span></span>确认密码：</h3>
+        <input type="password" class="Y3"  class="inputElem" type="email" placeholder="请再输一次" name="pwds" id="pwds" maxlength="18">
+        <h4></h4>
+       </div>
+       
+       <div id="four">
+        <h3 ><span></span>用户名称：</h3>
+        <input class="Y4" type="text" placeholder="2-18位，字母、数字、汉字" id="uname" name="uname" maxlength="18">
+        <h4></h4>
+       </div>
+       <if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+       <div id="fours">
+        <h3 ><span></span>用户类型：</h3>
+        <input  type="radio" id="px" name="px" style="width:15px;height:15px" value="6">&nbsp;普通会员
+        <!--<input  type="radio" id="px" name="px" style="width:15px;height:15px" value="5">&nbsp;商家-->
+       </div>
+     </if>
+        <div id="five">
+        <h3 style="color:black"><span></span>手机号&nbsp;&nbsp;&nbsp;：</h3>
+        <input class="Y5" type="text" placeholder="11位,手机号" name="tel" id="tel">
+        <if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+             <input type="button" value="点击验证" class="button" id="sendPhoneCode" onclick="send_phone_code()" autocomplete="off" style="cursor:pointer;"/>
+        </if>
+        </div>
+        
+        <if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+        <div id="six">
+        <h3 ><span></span>验证码&nbsp;&nbsp;&nbsp;：</h3>
+        <input id="Y6" type="text" placeholder="请输入验证码" name="code">
+       
+        </div>
+         <div style="margin:15px 0 0 110px;width:270px;height:40px;">&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="checkbox" id="yes" style="width:15px;height:15px"/>&nbsp;&nbsp;
+           <lable for="yes">阅读并同意</lable><span style="margin:0 0 0 5px;width:60px"><a href="{:U('News/xi',array('id'=>42,'key'=>$appkey))}">《屠涂用户服务协议》</a></span>
+        </div>
+        <else/>
+        <div id="six">
+        <h3><span></span>验证码&nbsp;&nbsp;&nbsp;：</h3>
+        <input id="Y6" type="password" placeholder="" name="code">
+        <h2><img src="{:U('User/verify?key=')}{$appkey}" width='120' height='45' alt="点击刷新验证码" class="dingwei" onclick="this.src+='?' + Math.random();" style="cursor:pointer;" /></h2>
+        </div>
+        </if>
+       <div class="button"><input type="submit" name="submit" id="submit" value="立即注册"></div>
+    </form>
+	<div class="you_tu">
+		<img src="__PUBLIC__/home/images/img.jpg" alt="" />
+	</div>
+</div>
+<if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+ <script type="text/javascript">
+    $(function(){
+        $("#submit").click(function(){
+            if($('#yes').is(':checked')) {
+            }else{
+                alert('同意相关协议才能注册');
+                return false;
+            }
+        })
+    })
+    var wait = 60;//倒计时120秒
+    var intervalId;//定时
+    var i = wait;//倒计时递减 1
+    function exit() {
+        $("#sendPhoneCode").val(i + "秒后重新发送").addClass("disabled");
+        i = i - 1;
+        if (i <= -1) {
+            clearInterval(intervalId);
+            $("#sendPhoneCode").removeAttr("disabled");
+            $("#sendPhoneCode").val("发送验证码").removeClass("disabled");
+        }
+    }
+    function send_phone_code() {
+        var phone = $("#tel").val();
+        var name  = $("#name").val();
+        var reg   = /^1[3|4|5|8][0-9]\d{4,8}$/;
+        if (phone == '') {
+            alert("请输入手机号！");
+            return false;
+        }
+        var parr=/^1[3|4|5|8][0-9]\d{8}$/;
+        if (!phone.match(/(13[0123456789][0-9]{8}|17[012356789][0-9]{8}|15[012356789][0-9]{8}|18[012356789][0-9]{8}|147[0-9]{8}|1349[0-9]{7})$/)) {
+                alert("请输入正确格式的号码！");
+                return false;
+            }
+
+        i = wait;
+        $.post("{:U('User/send?key=')}{$appkey}", {
+            "tel"  : phone,
+            "name" : name,
+            "type" : 1
+        }, function(data) {
+            if (data == 1) {
+                $("#sendPhoneCode").attr("disabled", "disabled");
+                $("#sendPhoneCode").val("发送成功");
+                intervalId = setInterval("exit()", 1000);
+            }else if(data == 0){
+                alert("发送失败");
+                $("#sendPhoneCode").val("重新发送");
+            }
+        })
+    }
+</script>
+</if>
+<!--注册  内容  end-->
+
+<!--结尾-->
+	<div class="xian"></div>
+	<include file="Public:footer" />
+
+
+
+</div>
+	</body>
+</html>

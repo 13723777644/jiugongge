@@ -1,0 +1,93 @@
+<?php  if($shopid==0){  ?>
+<dl id="menu-article">
+    <dt><i class="Hui-iconfont">&#xe616;</i>&nbsp&nbsp 综合管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+
+            <li><a data-href="{:U('More/setup')}" data-title="小程序配置" href="javascript:void(0)">配置</a></li>
+        </ul>
+    </dd>
+</dl>
+<?php  } ?>
+<dl id="menu-picture">
+    <dt><i class="Hui-iconfont">&#xe62d;</i>&nbsp&nbsp h5搜索分类管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('Category/index','shopid='.$shopid)}" data-title="分类管理" href="javascript:void(0)">h5搜索分类管理</a></li>
+            <li><a data-href="{:U('Category/add','shopid='.$shopid)}" data-title="添加分类" href="javascript:void(0)">添加h5分类</a></li>
+        </ul>
+    </dd>
+</dl>
+<dl id="menu-picture">
+    <dt><i class="Hui-iconfont">&#xe62e;</i>&nbsp&nbsp 客户<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('Guanggao/index','shopid='.$shopid)}" data-title="客户管理" href="javascript:void(0)">客户管理</a></li>
+            <li><a data-href="{:U('Guanggao/add','shopid='.$shopid)}" data-title="添加客户" href="javascript:void(0)">添加客户</a></li>
+        </ul>
+    </dd>
+</dl>
+<dl id="menu-system">
+    <dt><i class="Hui-iconfont">&#xe62e;</i>&nbsp&nbsp 案例管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('New/news_cat_add')}" data-title="添加案例分类" href="javascript:void(0)">添加案例分类</a></li>
+            <li><a data-href="{:U('New/news_cat')}" data-title="案例分类管理" href="javascript:void(0)">案例分类管理</a></li>
+            <li><a data-href="{:U('New/add')}" data-title="添加案例" href="javascript:void(0)">添加案例</a></li>
+            <li><a data-href="{:U('New/index')}" data-title="所有案例" href="javascript:void(0)">所有案例</a></li>
+        </ul>
+    </dd>
+</dl>
+
+
+<dl id="menu-system">
+    <dt><i class="Hui-iconfont">&#xe62e;</i>&nbsp&nbsp 首页案例管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('Ne/news_cat_add')}" data-title="添加首页案例分类" href="javascript:void(0)">添加首页案例分类</a></li>
+            <li><a data-href="{:U('Ne/news_cat')}" data-title="首页案例分类管理" href="javascript:void(0)">首页案例分类管理</a></li>
+            <li><a data-href="{:U('Ne/add')}" data-title="添加首页案例" href="javascript:void(0)">添加首页案例</a></li>
+            <li><a data-href="{:U('Ne/index')}" data-title="所有首页案例" href="javascript:void(0)">所有首页案例</a></li>
+        </ul>
+    </dd>
+</dl>
+
+
+
+<?php  if($shopid==0){  ?>
+<dl id="menu-system">
+    <dt><i class="Hui-iconfont">&#xe62e;</i>&nbsp&nbsp 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('News/add')}" data-title="添加资讯" href="javascript:void(0)">添加资讯</a></li>
+            <li><a data-href="{:U('News/index')}" data-title="所有资讯" href="javascript:void(0)">所有资讯</a></li>
+
+        </ul>
+    </dd>
+</dl>
+<dl id="menu-system">
+    <dt><i class="Hui-iconfont">&#xe62e;</i>&nbsp&nbsp 友链管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('Links/add')}" data-title="添加资讯" href="javascript:void(0)">添加友链</a></li>
+            <li><a data-href="{:U('Links/index')}" data-title="所有资讯" href="javascript:void(0)">所有友链</a></li>
+
+        </ul>
+    </dd>
+</dl>
+
+
+
+<?php  } ?>
+<?php  if($shopid==0){  ?>
+<dl id="menu-system">
+    <dt><i class="Hui-iconfont">&#xe62e;</i>&nbsp&nbsp 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+    <dd>
+        <ul>
+            <li><a data-href="{:U('Adminuser/add')}" data-title="添加管理员" href="javascript:void(0)">添加管理员</a></li>
+            <li><a data-href="{:U('Adminuser/adminuser')}" data-title="管理员管理" href="javascript:void(0)">管理员管理</a></li>
+
+        </ul>
+    </dd>
+</dl>
+<?php  } ?>

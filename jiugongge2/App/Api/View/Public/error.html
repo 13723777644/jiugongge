@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>跳转提示</title>
+    <meta name="keywords" content="跳转提示" />
+    <meta name="description" content="跳转提示" />
+    <link rel="shortcut icon" href="" />
+    
+    <!--[if IE 6]>
+    <script src="js/IE6PNG.js"></script>
+    <script type="text/javascript">
+        IE6PNG.fix('.png');
+    </script>
+    <![endif]--> 
+<style type="text/css">
+li{list-style:none}
+.head-tishi-bg{width: 100%;margin-top: 20px;position: absolute;top:28%;z-index: 1000;}
+.tishi-bg{width: 360px;height: 190px;margin:0 auto;border-radius: 5px;box-shadow:2px 2px 3px #555555;background: #fff;border:1px solid #d5d5d5;}
+.tishi-top{height: 45px;width: 358px;background:url('__PUBLIC__/home/images/tishi_b.jpg') repeat-x;border-bottom: 2px solid #d5d5d5;margin-left: 1px;}
+.tishi-top ul{}
+.tishi-top ul li{float: left;font-weight: bold;font-size: 14px;list-style:none}
+.tishi-top ul li.tu{text-indent: 55px;margin-top: 8px;list-style:none}
+.tishi-top ul li.tex{height: 45px;line-height: 45px;text-indent: 2px;list-style:none}
+.tishi-top ul li.tu1{text-indent: 55px;margin-top: 5px;list-style:none}
+.tishi-bg .buttom{margin: 20px auto;font-size: 16px;width: 340px;text-align: center;}
+#wait {
+    font-size:14px;
+}
+#btn-stop,#href{
+    display: inline-block;margin-right: 10px;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 0 none;
+    background-color: #8B0000;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    border-color: transparent;
+    text-decoration:none;
+}
+ 
+#btn-stop:hover,#href:hover{
+    background-color: #ff0000;
+}
+</style>
+ </head>
+<body style="background: #cfcfcf;">
+<!--弹出框-->
+
+<div class="head-tishi-bg">
+<div class="tishi-bg">
+<div class="tishi-top">
+	<ul>
+		<li class="tu"><img src="__PUBLIC__/home/images/tishi.jpg" /></li>
+		<li class="tex">错误提示，请按以下提示操作</li>
+		
+		
+	</ul>
+</div>
+<div class="buttom">
+	<?php echo($error); ?><br/><br/>
+	<b id="wait" ><?php echo($waitSecond); ?></b> 秒后页面将自动跳转
+</div>
+
+<div class="system-message" style="display:none;">
+<div>
+    <a id="href" id="btn-now" href="{$jumpUrl}">立即跳转</a> 
+    <button id="btn-stop" type="button" onclick="stop()">停止跳转</button> 
+    <a id="href" id="btn-now" href="{:U('User/logo')}">重新登录</a> 
+</div>
+</div>
+<script type="text/javascript">
+(function(){
+ var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+ var interval = setInterval(function(){
+     	var time = --wait.innerHTML;
+     	if(time <= 0) {
+     		location.href = href;
+     		clearInterval(interval);
+     	};
+     }, 1000);
+  window.stop = function (){
+         console.log(111);
+            clearInterval(interval);
+ }
+ })();
+</script>
+</div> 
+</div> 
+</body>
+</html>

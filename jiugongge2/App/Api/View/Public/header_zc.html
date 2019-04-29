@@ -1,0 +1,158 @@
+<div class="toubu">	
+  <div class="dingbu">
+	<div class="db_zuo">
+
+	<if condition="$name eq '' "> 
+		<span>欢迎光临<em><a href="{:U('User/logo?key=')}{$appkey}"> 亲,请登录</em></a></span>
+		<span>&nbsp;&nbsp;<a href="{:U('User/register?key=')}{$appkey}">免费注册</a></span>
+	
+	<else />
+	  <span>欢迎光临<em><a>{$name}</a></em></span>
+	  <span><a href="{:U('User/quit?key=')}{$appkey}">退出</a></span>
+	</if>
+	</div>
+<div class="db_you">
+		<div class="subNavBox">	
+			<div class="subNav currentDd icon1"><img src="__PUBLIC__/home/images/icon/my1.png" id="small_icon1" /> 我的信息<img src="__PUBLIC__/home/images/aaa.jpg">&nbsp;
+				<ul class="navContent " style="display:none">
+					<li><a href="{:U('User/user?key=')}{$appkey}">信息管理</a></li>
+					<li><a href="{:U('User/address?key=')}{$appkey}">我的地址管理</a></li>	
+				</ul>
+			</div>
+		</div>
+		
+    
+<!--   <span class="span1">|</span> -->
+    
+    <div class="subNavBox">
+	<div class="subNav currentDd icon2"><a href="{:U('User/orders?key=')}{$appkey}" id="order" style="color:#555555"><img src="__PUBLIC__/home/images/icon/order1.png" id="small_icon2" /> 我的订单</a>
+	
+	</div>		
+    </div>
+	 <!--  <span class="span2">|</span> -->
+	
+	<div class="subNavBox">
+	<div class="subNav currentDd  icon3"><img src="__PUBLIC__/home/images/icon/love1.png" id="small_icon3" /> 我的关注<img src="__PUBLIC__/home/images/aaa.jpg">
+	<ul class="navContent " style="display:none">
+			<li><a href="{:U('User/collection?key=')}{$appkey}">关注产品</a></li>
+			<li><a href="{:U('User/shangchang?key=')}{$appkey}">关注店铺</a></li>
+	</ul>
+	</div>
+    </div>
+    <!--    <span class="span3">|</span> -->
+	
+     
+    <div class="subNavBox">
+	<div class="subNav currentDd icon4"><img src="__PUBLIC__/home/images/icon/app1.png" id="small_icon4" /> 全网APP端<img src="__PUBLIC__/home/images/aaa.jpg">
+	<ul class="navContent ara" style="display:none">
+			<if condition="$er.img neq '' "><li><a style="height:90px; width:150px;"><img src="{$think_path}{$er.img}" width="80" height="80" style="vertical-align:middle;"/>iphone</a></li></if>
+			
+			<if condition="$era.img neq ''"><li><a style="height:90px;width:150px;"><img src="{$think_path}{$era.img}" width="80" height="80" style="vertical-align:middle;"/>android</a></li></if>
+		
+			
+	</ul>
+	</div>
+    </div>
+    <!--   <span class="span4">|</span> -->
+     <div class="subNavBox">
+	<div class="subNav currentDd icon5"><img src="__PUBLIC__/home/images/icon/weixin1.png" id="small_icon5" /> 全网微信端<img src="__PUBLIC__/home/images/aaa.jpg">
+	<ul class="navContent ara" style="display:none">
+			<if condition="$weixin.img neq ''"><li><a style="height:90px; width:150px;"><img src="{$think_path}{$weixin.img}" width="80" height="80" style="vertical-align:middle;"/></a></li></if>
+		
+			
+	</ul>
+	</div>
+    </div>
+    <!--   <span class="span5">|</span> -->
+    <div class="subNavBox">
+	<div class="subNav currentDd icon6"><img src="__PUBLIC__/home/images/icon/partner1.png" id="small_icon6" /> 商家服务<img src="__PUBLIC__/home/images/aaa.jpg">&nbsp;
+	<ul class="navContent " style="display:none">
+			<li><a href="http://wpa.qq.com/msgrd?v=3&uin={$q.concent}&site=qq&menu=yes" target="_black">在线客服</a></li>
+			
+	</ul>
+	</div>
+    </div>
+     <!--  <span class="span6">|</span> -->
+	</div>
+	
+	<div id="content1"></div>
+	
+	
+	
+	
+<script type="text/javascript">
+$(".icon1").mouseover(function(){
+	$("#small_icon1").attr("src","__PUBLIC__/home/images/icon/my.png");
+});
+$(".icon1").mouseout(function(){
+	$("#small_icon1").attr("src","__PUBLIC__/home/images/icon/my1.png");
+});
+
+$(".icon2").mouseover(function(){
+	$("#small_icon2").attr("src","__PUBLIC__/home/images/icon/order.png");
+});
+$(".icon2").mouseout(function(){
+	$("#small_icon2").attr("src","__PUBLIC__/home/images/icon/order1.png");
+});
+
+$(".icon3").mouseover(function(){
+	$("#small_icon3").attr("src","__PUBLIC__/home/images/icon/love.png");
+});
+$(".icon3").mouseout(function(){
+	$("#small_icon3").attr("src","__PUBLIC__/home/images/icon/love1.png");
+});
+
+$(".icon4").mouseover(function(){
+	$("#small_icon4").attr("src","__PUBLIC__/home/images/icon/app.png");
+});
+$(".icon4").mouseout(function(){
+	$("#small_icon4").attr("src","__PUBLIC__/home/images/icon/app1.png");
+});
+
+$(".icon5").mouseover(function(){
+	$("#small_icon5").attr("src","__PUBLIC__/home/images/icon/weixin.png");
+});
+$(".icon5").mouseout(function(){
+	$("#small_icon5").attr("src","__PUBLIC__/home/images/icon/weixin1.png");
+});
+$(".icon6").mouseover(function(){
+	$("#small_icon6").attr("src","__PUBLIC__/home/images/icon/partner.png");
+});
+$(".icon6").mouseout(function(){
+	$("#small_icon6").attr("src","__PUBLIC__/home/images/icon/partner1.png");
+});
+
+
+$(function(){
+	$("navContent").hide()
+$(".subNav").each(function(i){
+	$(".subNav").eq(i).hover(function(){
+		//$(".subNav>img").eq(i).attr("src","__PUBLIC__/home/images/bbb.jpg");	
+		$(".subNav").eq(i).find("ul").show();	
+  },function(){	
+//$(".subNav>img").eq(i).attr("src","__PUBLIC__/home/images/aaa.jpg");	
+  	$(".subNav").eq(i).find("ul").hide();
+  });
+				
+ });
+});
+</script>	
+<!-- <script>	
+$(function(){
+	$("navContent").hide()
+$(".subNav").each(function(i){
+	$(".subNav").eq(i).hover(function(){
+		$(".subNav").eq(i).addClass("currentDt");
+		$(".subNav").eq(i).find("ul").show();	
+  },function(){	
+  	$(".subNav").eq(i).removeClass("currentDt");
+  	$(".subNav").eq(i).find("ul").hide();
+  });
+				
+ });
+});
+</script> -->
+
+		
+  </div>
+</div>

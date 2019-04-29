@@ -1,0 +1,63 @@
+<style>
+.tujiann-foot .footul ul{}
+.tujiann-foot ul.footul>li{float: left;text-align: center;}
+.tujiann-foot ul.footul>li.footul-one{width: 18%;}
+.tujiann-foot ul.footul>li.footul-two{width: 23%;}
+.tujiann-foot ul.footul>li.footul-two span img{width: 90px;height: 90px;margin-top: 12px;}
+.tujiann-foot ul.footul>li.footul-one ul li{height: 35px;line-height: 35px; width: 100%;}
+.tujiann-foot ul.footul>li.footul-one ul li a{color: #333333;font-size: 14px;}
+.tujiann-foot ul.footul>li.footul-one ul li.oneli{font-size: 18px;}
+.tujiann-foot ul.footul>li.footul-two p img{height: 35px;vertical-align: middle;}
+.tujiann-foot ul.footul>li.footul-two p{height: 35px;line-height: 35px;font-size: 18px;}
+.tujiann-foot ul.footul>li.footul-two p.footul-two-right{text-align: left; margin-left: 35px;}
+.tujiann-foot ul.footul>li.footul-two p.footul-two-left{margin-top: 20px; text-align: left; margin-left: 35px;}
+.tujiann-foot{border-top: 1px solid #e4e4e4;margin-bottom: 20px; width: 100%;}
+.tujiann-foot ul.footul>li.footul-two p.ziti{font-size: 14px;} 
+.king-clear {clear: both;}
+</style>
+
+  <!--底部-->	
+  <div class="yqlj">
+		<!--<div class="xian"></div>-->
+		<ul>
+		<li><a >友情链接 ：</a></li>
+		<volist name="listss" id="liname">
+			
+			<li><a href="{$liname.link}" target="view_window">{$liname.name}</a></li>
+		</volist>
+		</ul>
+		<div class="king-clear"></div>
+  </div>
+		<div class="dbs">
+			<ul>
+				<li>网络文化经营许可证 ：[2013]0268-027号 | 沪ICP证 ：070359号 | 信息网络传播视听节目许可证 ：1109364号</li>
+				<li>违法及不良信息举报电话 ：4000939255 | Copyright 版权所有 ：{$app_name}</li>
+			</ul>
+			
+  </div> 
+
+  <!--回顶部-->
+  
+  <div class="xuanfu">
+        <ul id="xuanfu">
+            <li class="one"><a href="{:U('Shopping/index?key=')}{$appkey}"></a></li>
+            <li class="two"><a href="{:U('User/collection?key=')}{$appkey}"></a></li>
+            <li class="three"><a href="http://wpa.qq.com/msgrd?v=3&uin={$q.concent}&site=qq&menu=yes" target="_black"></a></li>
+            <li class="four"></li>
+        </ul>
+    </div>
+   
+     <!--回顶部    end-->
+
+
+
+
+
+
+
+
+
+
+
+
+

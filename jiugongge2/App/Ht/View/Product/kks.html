@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获得jsonp对象</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+<input type="text" id="val" ><input type="button" id="dian" value="点击">
+<script>
+    var url='http://www.seven.com/lianxi/CodeIgniter-3.0/index.php/Welcome/jsonp';
+    //var url='jsonp.php';
+    $("#dian").click(function(){
+
+        var aa=$("#val").val();
+        var data={jsoncallback:aa};
+
+        $.getJSON(url,data,function(msg){
+            //console.log(msg);
+            alert(msg);
+        })
+    })
+
+</script>
+</body>
+</html>

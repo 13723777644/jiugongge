@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人中心</title>
+		<link rel="stylesheet" href="__PUBLIC__/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/css/gerenzhongxin.css" />
+		<script src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/js/gerenzhongxin.js"></script>
+	</head>
+	<body>
+<include file="Public:header_zc" />
+
+<!--最大  div-->
+<div class="content">
+<!--个人中心   标题-->
+
+<div class="gouwuchebt">
+<div class="logo">
+	<img src="" alt="" />
+</div>	
+<div class="hyzc"><h1>个人中心</h1></div>
+
+</div>
+<!--个人中心   end-->
+
+<!--搜索商品-->
+	<div class="geren_sousuo">
+    			<input type="text" placeholder="商品名称/商品编号/订单号"/>
+    			<button>确定</button>
+    </div>
+<!--搜索商品  end-->
+
+<!--我的订单-->
+<div class="mydingdan">
+	<!-- 左边-->
+	<div class="mydingdan_zuo">
+	  <ul>
+	  	<li class="bold">订单中心</li>
+	  	<li><a href="###">我的订单</a></li>
+	  	<li><a href="###">取消订单记录</a></li>
+	  </ul>
+	  <ul>
+	  	<li class="bold">关注中心</li>
+	  	<li><a href="###">关注的商品</a></li>
+	  	<li><a href="###">关注的店铺</a></li>
+	  </ul>
+	  <ul>
+	  	<li class="bold">资产中心</li>
+	  	<li><a href="###">我的积分</a></li>
+	  	<li><a href="###">我的优惠卷</a></li>
+	  </ul>
+	  <ul>
+	  	<li class="bold">设置</li>
+	  	<li><a href="###">个人信息</a></li>
+	  	<li><a href="###">收货地址</a></li>
+	  </ul>
+	</div>
+<!--我的订单-->
+<!-- 右边-->
+	<div class="mydingdan_you">
+		<div class="my">我的订单</div>
+		<div id="paginationdemo" class="demo">
+<!--第一页-->
+		 <div class="page">
+		 	<ol>
+		 	<li class="dingdan">订单详情</li> 
+			<li>收货人</li>
+			<li>金额</li>
+			<li>全部状态</li>
+			<li>操作</li>
+		 	</ol>
+  <!--11111-->
+  <volist name="order" id="ors">
+       <div class="shangpin_one">
+	   <volist name="ors['slist']" id="pro">
+		<div class="xiangqing">
+			<ul>
+				<li class="time">{$pro.addtime|date="Y-m-d H:i",###}</li>
+				<li>订单号：{$pro.order}</li>
+				<li>商家：{$ors.name}</li>
+				<li class="wangwang">旺旺<em><a target="_blank" href="http://amos.alicdn.com/msg.aw?v=2&uid={$ors.wangwang}&site=cnalichn&s=11&charset=UTF-8" >
+		<img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid={$ors.wangwang}&site=cnalichn&s=11&charset=UTF-8" style="vertical-align:text-top;" alt="点击这里给我发消息" /></a>
+		</em></li>
+				<li class="shangchu"><a  class="remove_btn" href="##"><img src="__PUBLIC__/img/lj.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="shangpin_one_top">		
+		  <ul class="xian">
+		  	<li class="one"><img src="{$think_path}{$pro.product_img}" alt="" height="79" width="79" /></li>
+		  	<li class="two">{$pro.name}</li>
+		  	<li class="three">x {$pro.num}</li>
+		  </ul>
+		  		<ul class="four">
+		  			<li class="four_b">{$pro.contact}</li>
+		  			<li>￥ {$pro.zprice}</li>
+		  			<li class="four_a"><em>未付款</em><br /><span>订单详情</span></li>
+		  			<li class="four_a"><button>立即付款</button><br /><span style="color:#333333;">取消订单</span><button style="background-color:#f5f5f5 ;color: black;border: 1px solid #e4e4e4;margin-top: 7px;">确认收货</button></</li>
+		  		</ul>
+	       </div>
+		    </volist>
+       </div>
+ </volist>
+ <!--第一页  完-->   
+    
+  <!--第二页 -->  
+   <div class="page">
+		 	<ol>
+		 	<li class="dingdan">订单详情</li> 
+			<li>收货人</li>
+			<li>金额</li>
+			<li>全部状态</li>
+			<li>操作</li>
+		 	</ol>
+  <!--11111-->
+       <div class="shangpin_one">
+		<div class="xiangqing">
+			<ul>
+				<li class="time">2015-12-28 08:45:01</li>
+				<li>订单号：1141163119</li>
+				<li>商家：良品铺子</li>
+				<li class="wangwang">旺旺<em></em></li>
+				<li class="shangchu"><a  class="remove_btn" href="##"><img src="img/lj.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="shangpin_one_top">		
+		  <ul class="xian">
+		  	<li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	<li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	<li class="three">x 1</li>
+		  </ul>
+		  		<ul class="four">
+		  			<li class="four_b">林圭龙</li>
+		  			<li>￥ 188.00</li>
+		  			<li class="four_a"><em>未付款</em><br /><span>订单详情</span></li>
+		  			<li class="four_a"><button>立即付款</button><br /><span style="color:#333333;">取消订单</span></li>
+		  		</ul>
+	       </div>
+       </div>
+	<!--2222-->    
+	<div class="shangpin_one">
+		<div class="xiangqing">
+			<ul>
+				<li class="time">2015-12-28 08:45:01</li>
+				<li>订单号：1141163119</li>
+				<li>商家：良品铺子</li>
+				<li class="wangwang">旺旺<em></em></li>
+				<li class="shangchu"><a  class="remove_btn" href="##"><img src="img/lj.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="shangpin_one_top">		
+		  <ul class="xian">
+		  	<li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	<li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	<li class="three">x 1</li>
+		  </ul>
+		    <ul class="xian">
+		  	  <li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	  <li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	  <li class="three">x 1</li>
+		    </ul> 
+		  		<ul class="four">
+		  			<li class="four_b">林圭龙</li>
+		  			<li>￥ 376.00</li>
+		  			<li class="four_a"><em>未付款</em><br /><span>订单详情</span></li>
+		  			<li class="four_a"><button style="background-color:#f5f5f5 ;color: black;border: 1px solid #e4e4e4;margin-top: 7px;">确认收货</button></li>
+		  		</ul>
+	    </div>
+    </div>    
+	<!--333-->    
+	 <div class="shangpin_one">
+		<div class="xiangqing">
+			<ul>
+				<li class="time">2015-12-28 08:45:01</li>
+				<li>订单号：1141163119</li>
+				<li>商家：良品铺子</li>
+				<li class="wangwang">旺旺<em></em></li>
+				<li class="shangchu"><a  class="remove_btn" href="##"><img src="img/lj.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="shangpin_one_top">		
+		  <ul class="xian">
+		  	<li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	<li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	<li class="three">x 1</li>
+		  </ul>
+		  		<ul class="four">
+		  			<li class="four_b">林圭龙</li>
+		  			<li>￥ 188.00</li>
+		  			<li class="four_a"><em>未付款</em><br /><span>订单详情</span></li>
+		  			<li class="four_a"><button style="background-color:#f5f5f5 ;color: black;border: 1px solid #e4e4e4;margin-top: 7px;">确认收货</button></li>
+		  		</ul>
+	       </div>
+       </div> 
+       
+    </div>
+  <!--第二页  完-->
+  
+  
+  <!--第三页 -->
+       <div class="page">
+		 	<ol>
+		 	<li class="dingdan">订单详情</li> 
+			<li>收货人</li>
+			<li>金额</li>
+			<li>全部状态</li>
+			<li>操作</li>
+		 	</ol>
+  <!--11111-->
+       <div class="shangpin_one">
+		<div class="xiangqing">
+			<ul>
+				<li class="time">2015-12-28 08:45:01</li>
+				<li>订单号：1141163119</li>
+				<li>商家：良品铺子</li>
+				<li class="wangwang">旺旺<em></em></li>
+				<li class="shangchu"><a  class="remove_btn" href="##"><img src="img/lj.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="shangpin_one_top">		
+		  <ul class="xian">
+		  	<li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	<li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	<li class="three">x 1</li>
+		  </ul>
+		  		<ul class="four">
+		  			<li class="four_b">林圭龙</li>
+		  			<li>￥ 188.00</li>
+		  			<li class="four_a"><em>未付款</em><br /><span>订单详情</span></li>
+		  			<li class="four_a"><button>立即付款</button><br /><span style="color:#333333;">取消订单</span></li>
+		  		</ul>
+	       </div>
+       </div>
+	<!--2222-->    
+	<div class="shangpin_one">
+		<div class="xiangqing">
+			<ul>
+				<li class="time">2015-12-28 08:45:01</li>
+				<li>订单号：1141163119</li>
+				<li>商家：良品铺子</li>
+				<li class="wangwang">旺旺<em></em></li>
+				<li class="shangchu"><a  class="remove_btn" href="##"><img src="img/lj.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="shangpin_one_top">		
+		  <ul class="xian">
+		  	<li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	<li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	<li class="three">x 1</li>
+		  </ul>
+		    <ul class="xian">
+		  	  <li class="one"><img src="img/aaaz.jpg" alt="" /></li>
+		  	  <li class="two">御泥坊 &nbsp;男士补水活力矿物蚕丝面膜贴7片装（清爽控油 活力劲爽）</li>
+		  	  <li class="three">x 1</li>
+		    </ul> 
+		  		<ul class="four">
+		  			<li class="four_b">林圭龙</li>
+		  			<li>￥ 376.00</li>
+		  			<li class="four_a"><em>未付款</em><br /><span>订单详情</span></li>
+		  			<li class="four_a"><button style="background-color:#f5f5f5 ;color: black;border: 1px solid #e4e4e4;margin-top: 7px;">确认收货</button></li>
+		  		</ul>
+	    </div>
+    </div>
+    
+  </div>   
+  <!--第三页  完-->
+  
+<!--分页 -->		
+	<div class="yeshu">  
+       <div id="pagnation"></div>
+    </div>
+    
+ </div>	
+</div>		
+</div>
+
+<!--我的订单   end-->
+
+<!--结尾-->
+  <div class="yqlj">
+		<ul>
+			<li><a href="###">友情链接 ：</a></li>
+			<li><a href="###">淘宝</a></li>
+			<li><a href="###">京东</a></li>
+			<li><a href="###">支付宝</a></li>
+			<li><a href="###">一淘</a></li>
+			<li><a href="###">天天低价</a></li>
+			<li><a href="###">畅选无忧</a></li>
+			<li><a href="###">正品行货</a></li>
+			<li><a href="###">精致服务</a></li>
+			<li><a href="###">多仓直发</a></li>
+			<li><a href="###">极速配送</a></li>
+			<li><a href="###">品类齐全</a></li>
+		</ul>
+	</div>
+		
+    <!-- 底部-->	
+		<div class="db">
+			<ul>
+				<li>关于我们 | 合作伙伴 | 营销中心 | 手机商城 | 投诉举报 | 联系客服 | 联系我们 | 法律声明 </li>
+				<li>网络文化经营许可证 ：[2013]0268-027号 | 沪ICP证 ：070359号 | 信息网络传播视听节目许可证 ：1109364号</li>
+				<li>违法及不良信息举报电话 ：4006561155 | Copyright 版权所有 ：沃蓝信息科技有限公司</li>
+			</ul>	
+		</div>
+
+</div>
+	</body>
+</html>

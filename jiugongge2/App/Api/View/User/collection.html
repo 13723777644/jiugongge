@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人中心_关注的商品</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/guanzhushangpin.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/home/js/guanzhushangpin.js"></script>
+	</head>
+	<body>
+		<!--头部-->
+		
+<include file="Public:header_zc" />
+<!--最大  div-->
+<div class="content">
+<!--个人中心   标题-->
+
+<div class="gouwuchebt">
+<div class="logo">
+	<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>个人中心</h1></div>
+
+</div>
+<!--个人中心   end-->
+
+<!--搜索商品-->
+<form class="form-search" action="{:U('Product/index?key=')}{$appkey}" method="post" >
+	<div class="geren_sousuo">
+    			<input type="text" placeholder="商品名称" name="keywords"/>
+    			<button  type="submit"  name="sub">确定</button>
+    </div>
+    </form>
+<!--搜索商品  end-->
+
+<!--我的订单-->
+<div class="guanzhudianpu">
+	<!-- 左边-->
+		<include file="Public:left" />
+
+<!--关注的店铺-->
+<!-- 右边-->
+	<div class="dianpu_you">
+		<div class="my">关注的商品</div>
+		<div id="paginationdemo" class="demo">
+<!--第一页-->
+
+	<div class="page">
+		<div class="one">
+			<ul>
+			<volist name="produt" id="pro">
+				<li>
+					<a href="{:U('Product/xi',array('id'=>$pro['pid'],'key'=>$appkey))}"><empty name="pro.logo"><img src="{$think_path}{$pro.photo_x}" alt="" /><else /> <img src="{$think_path}{$pro.logo}" alt="" /></empty></a>
+					<h1><input type="checkbox" name="newslist[]" id="newslist"  value="{$pro.id}"/><span>{$pro.name}</span></h1>
+					<h2><em>￥
+						<if condition="$pro.price_yh eq 0">
+						价格面议
+						<else />
+						{$pro.price_yh}
+						</if>
+					</em> <s>￥{$pro.price}</s></h2>
+					<h3><a href="{:U('Product/xi',array('id'=>$pro['pid'],'key'=>$appkey))}"><button>加入购物车</button></a><a href="{:U('User/collection_qu',array('id'=>$pro['id'],'key'=>$appkey))}"><button class="quxiao" style="margin-left: 15px;">取消关注</button></a></h3>
+				</li>
+				</volist>
+				
+		     </ul>
+	</div>
+<script>
+$(function () {	
+	$("#quxiaogz").click(function(){        	
+		var adIds = "";  
+        $("input[id=newslist]:checked").each(function(i){  
+        	var arr = $(this).val();
+            if(0==i){  
+                adIds = arr;  
+            }else{  
+                adIds += (","+arr);  
+            }  
+        });  
+        //alert(adIds);
+		$.post("{:U('User/collection_qus',array('key'=>$appkey))}",{"id":adIds},function(data){
+		alert(data);
+		if(data!=''){
+			
+			window.location.reload();
+		}
+		})
+		
+	 });
+})
+</script>	
+    </div>
+ <!--第一页  完-->   
+
+  
+<!--分页 -->		
+	<div class="yeshu"> 
+	   <div class="quanxuan">
+	   	<input type="checkbox" class="allselect"/><em>全选</em>
+	   	<span><a id="quxiaogz">取消关注</a></span>
+	   </div>
+       <div id="pagnation">{$page}</div>
+    </div>
+    
+ </div>	
+</div>		
+</div>
+
+<!--我的订单   end-->
+<include file="Public:footer" />
+
+</div>
+	</body>
+</html>
+

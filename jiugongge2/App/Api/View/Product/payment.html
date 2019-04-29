@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>结算中心</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/jiesuan.css" />
+
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/home/js/jiesuan.js"></script>
+		<script src="__PUBLIC__/home/js/jquery.provincesCity.js" type="text/javascript"></script>
+        <script src="__PUBLIC__/home/js/provincesdata.js" type="text/javascript"></script>
+        <style type="text/css">
+           .jiajian{margin:20px 0 0 0;}
+           input.numa{ width:40px; height:24px; line-height:24px; border:1px solid #CCC; text-align:center;  float:left; margin:7px auto}
+           input.adda,input.jiana{ width:26px; height:26px;line-height: 26px; float:left; border:1px solid #ccc; background:white; cursor:pointer; margin:7px auto}
+        </style>
+	</head>
+	<body>
+	<include file="Public:header_zc" />
+
+<!-- 单件商品结算-->
+<div class="content">
+	
+<!--结算中心   标题-->
+<div class="biaoti">
+<div class="jiesuanbt">
+<div class="logo">
+	<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>结算中心</h1></div>
+</div>
+<div class="dingdan_tu">
+	
+	<ul>
+		
+		<li><p>我的购物车</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em>1</em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 235px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;"></div>
+				</div>
+			</div>
+		</li>
+		<li><p style="padding-left: 20px;">填写核对订单信息</p> 
+			<div class="zhong">
+				<div class="yuan">
+					<div style="width:30px;height: 30px;border-radius:50%;background-color:#0c8541;margin:5px 5px 5px 5px;"><em>2</em></div>
+				</div>
+				<div class="tiao">
+					<div style="width: 130px;height: 5px;background-color:#0c8541;margin:3px 2px 2px 2px;margin-left: -7px;position: absolute;"></div>
+				</div>
+			</div>
+		</li>
+		<li><p>成交提交订单</p> 
+			<div class="zhong">
+				<div class="yuan"><em style="float:left;margin-left:17px;margin-top: 10px;color: white;font-weight: bold;">3</em></div>
+			</div>			
+		</li>
+		
+	</ul>
+</div>
+
+</div>
+<!--结算中心   end-->
+<h6>填写并核对信息</h6>
+
+<!--收货信息-->
+<div class="shouhuo">
+	
+	<div class="xinxi">
+	<div class="zi">
+	<em style="float: left;margin-left: 25px;">收货人信息</em>
+	<a href="##"><em style="float: right; margin-right: 30px;" class="xianshi">新增收货地址</em></a>
+	</div>
+	<div class="name">
+         <ul class="clearfix"> 	
+  <volist name="add" id="ress">
+   <li class="clearfix mo">
+     <table border="0" cellspacing="0" cellpadding="0" width="800" style="float: left;">  	
+      	<tr>
+     		<td style=" width:100px ;">{$ress.name}</td>
+     		<td width="50%">{$ress.address_xq}</td>
+     		<td>{$ress.tel}</td>
+     		<td>{$ress.code}</td>		
+     	</tr> 
+         <table class="hide_t" border="0" cellspacing="0" cellpadding="0" style="float: right;display: none;"> 
+         	<tr>
+         		<td><a  class="address">设置为默认地址</a></td>
+         		<!--  <td class="edit"><a href="###">编辑</a></td>-->
+         		<!--<td class="deleted"><a href="{:U('Product/del_address',array('id'=>$ress['id'],'key'=>$appkey))}">删除</a></td>-->
+         	</tr>
+         </table>
+     </table>
+     </li> 
+    </volist> 
+     </ul> 
+      <div class="shou_btn">收起地址 &uArr;</div>
+</div>	
+<script>
+function changeclass()
+{
+	$.post("{:U('Product/city',array('key'=>$appkey))}",{tid:document.getElementById('sheng').value},
+			  function(data){
+				document.getElementById("shi").innerHTML=data;
+			  }
+	      );
+}
+function change()
+{
+	$.post("{:U('Product/qu',array('key'=>$appkey))}",{tid:document.getElementById('shi').value},
+			  function(data){
+				document.getElementById("qu").innerHTML=data;
+			  }
+	      );
+}
+ $(function(){
+   
+   $("#button").on('click', function() {
+    if ($("#contact").val()=='') {
+      alert("请选择收获地址！");
+      return false;
+    } else {
+      return true;
+    }
+  });
+});
+</script>	
+	<!--弹窗-->
+	<div class="tanchuang" style="display: none;position: absolute;z-index:6666 ;">
+		<div class="bianji clearfix">
+			<span style="float: left;margin-left: 10px;">编辑收货人信息</span><span class="quxiao" style="float: right;margin-right: 10px;font-size: 20px;cursor: pointer;">×</span>
+		</div>
+	<form action="{:U('Product/address',array('key'=>$appkey))}" id="form1" method="post">
+		 <div id="one">
+        <h3 class="one"><span>*</span>收货人：</h3>
+        <input autocomplete="on" id="Y1" type="text" name="name">
+        <h4></h4>
+     </div>
+       <div id="two">
+        <h3 class="two"><span>*</span>所在地区：
+		        <div style="width:400px;margin-top:-20px;margin-left:8px"><select onchange="changeclass();" class="inp_1 inp_3" id="sheng" name="sheng"  >
+			      <option value="">省份</option>
+			      <volist name="citys" id="ct">
+			      <option value="{$ct.id}">{$ct.name}</option>
+			      </volist>
+               </select>
+               <select onchange="change();"  id="shi" name="shi"  >
+               <option value="">市级</option>
+               </select>
+               <select id="qu" name="qu"  >
+               <option value="">区级</option>
+               </select>
+               </div>
+</h3>
+       
+        <h4></h4>
+		</div>
+	
+       <div id="three">
+        <h3 class="three"><span>*</span>详细地址：</h3>
+        <input type="text" id="Y3" name="address">
+        <h4></h4>
+       </div>
+       
+        <div id="five">
+        <h3 class="five"><span>*</span>手机号：</h3>
+        <input id="Y5" type="text" name="tel">
+        	 <h4></h4>
+        	
+       
+        </div>
+       
+       <div id="four">
+        <h3 class="four">邮政编码：</h3>
+        <input id="Y4" type="text" name="code">
+        	<p>用来接收订单提醒邮件，便于你及时了解订单状态。</p>
+           <h4></h4>
+       </div>
+      
+        
+       <div class="button">
+       	<input class="a-1" id="a-1" type="submit" value="保存收货人信息">
+       </div>
+	</form>	
+	</div>
+	
+	
+	<div class="mask"></div>
+<!--弹窗  end-->	
+</div>	
+	
+<!--支付方式-->	
+<form action="{:U('Product/payment',array('key'=>$appkey,'pid'=>$_GET['partner'],'gid'=>$_GET['gid']))}"  method="post" >	
+<div class="zhifu">
+	<if condition="($lis.alipay neq '') OR ($lis.alipay_pid neq '') OR ($lis.alipay_key neq '') ">
+	 <h1 style="display:inline-block;width:110px;height:35px;font-size: 16px;padding: 30px 0px 0px 20px;letter-spacing: 0.2em;"><input name="type" type="radio" value="alipay" checked />支付宝支付 </h1>
+	 <h1 style="display:inline-block;width:110px;height:35px;font-size: 16px;padding: 30px 0px 0px 20px;letter-spacing: 0.2em;" ><input name="type" type="radio" value="cash" />货到付款</h1> 
+	 <else />
+	 <h1 style="display:inline-block;width:110px;height:35px;font-size: 16px;padding: 30px 0px 0px 20px;letter-spacing: 0.2em;" ><input name="type" type="radio" value="cash" checked />货到付款</h1> 
+	 </if>
+</div>	
+<!--/*送货清单*/-->
+<div class="qingdan">
+	<div class="zi">
+	<em style="float: left;margin-left: 15px;">送货清单</em>
+	</div>
+	<div class="bianhao">
+     <p>商家：{$lis.sname} <input type="hidden"  name="pid" value="{$lis.pid}" /></p>
+     <ul>
+     	<li>商品</li>
+     	<li style="width: 48%;"></li>
+     	<li>单价</li>
+     	<li>是否有货</li>
+     	<li style="text-align: left;">件数</li>
+     </ul>
+    <ol>
+     	<li class="img"><img src="{$think_path}{$lis.photo_x}" height="79" width="79" style='margin-top:5px'/>
+		
+		<input type="hidden"  name="logo" value="{$lis.photo_x}" />
+		<input type="hidden"  name="pids" value="{$_GET['pid']}" />
+
+		</li>
+     	<li style="width:48% ; color:#397abe ;line-height: 1.5;padding-top: 10px;text-align: left;"><input style="border:none;line-height:2.5em" type="type"  name="name" value="{$lis.name}" readonly="readonly"/><br/><span>{$buff}&nbsp;&nbsp;&nbsp;&nbsp;{$lis.gname}</span><input type="hidden"  name="id" value="{$lis.id}" /></li>
+     	<li style="color:#c02e34;font-weight: bold;">￥{$lis.price}</li><!-- x {$num}<input type="hidden"  name="num" value="{$num}" /> -->
+     	<li>有货</li>
+     	<li>
+            <div class="jiajian">
+ 			<input type="button" class="jiana" id="jian" value="-" />
+            <input type="text" class="numa"  value="{$num}" name="num" id="num" readonly="readonly"/>
+            <input type="button" class="adda" id="add" value="+" /></div>    
+     	</li> 	
+     </ol>  
+</div>
+<script type="text/javascript">
+   $(function () {
+            $(".numa").keyup(function () {
+                //如果输入非数字，则替换为''，如果输入数字，则在每4位之后添加一个空格分隔
+                this.value = this.value.replace(/[^\d]/g, '').replace(/(\d{4})(?=\d)/g, "$1 ");
+            })
+            var pnum = {$lis.pnum};
+            var t = $("#num");
+			var id =1;
+			$("#add").click(function () {
+				if(t.val()>=pnum){
+                    alert("超出库存");
+                    return false;
+				}
+				t.val(parseInt(t.val()) + 1)
+				var pid = {$_GET['pid']};
+				var partner = {$_GET['partner']};
+				var gid = {$_GET['gid']};
+				var vals = "";
+				$.get("{:U('Shopping/payment',array('key'=>$appkey))}",{"nums":t.val()});
+				  window.location.href="{:U('Product/payment?key=')}{$appkey}&num="+t.val()+"&pid="+pid+"&partner="+partner+"&gid="+gid+"&val="+vals;
+			})
+			$("#jian").click(function () {
+				if((t.val())>=2){
+				t.val(parseInt(t.val()) - 1)
+				}
+				var pid = {$_GET['pid']};
+				var partner = {$_GET['partner']};
+				var gid = {$_GET['gid']};
+				var vals = "";
+				$.get("{:U('Shopping/payment',array('key'=>$appkey))}",{"nums":t.val()});
+				 window.location.href="{:U('Product/payment?key=')}{$appkey}&num="+t.val()+"&pid="+pid+"&partner="+partner+"&gid="+gid+"&val="+vals;
+			})
+        });
+</script>
+
+</div>	<br /><br />	
+	
+<!--订单备注-->	
+	<div class="beizhu">
+		<h1 style="margin-left:10px;">买家留言：</h1>
+		<input type="text"  name="remark"/><em style="color:#999999 ;">提示：请勿填写有关支付，收货，发票方面的信息。</em>
+	</div>
+	
+	
+	
+<!--商品总价-->
+	<div class="zongjia">	
+<ol>
+<input type="hidden"  name="guige" value='{$guige}' /><input type="hidden"  name="buff" value="{$buff}" />
+	<li>商品总价：<span>￥{$lis.zprice}<input type="hidden"  name="price" value="{$lis.zprice}" /><input type="hidden"  name="uprice" value="{$lis.uprice}" /> </span></li>
+	 <li>+ 运　费：
+	 	   <notempty name="yunfei">
+	    	<foreach name="yunfei" item="yun">
+	    	    <input type="radio" class="king_yunfei" name="yunfei" value="{$yun['id']}">￥{$yun['price']}({$yun['name']})&nbsp;&nbsp;&nbsp;
+	        </foreach>
+	        <else/>
+	        0
+	       </notempty>
+	  </li>
+	<!--<li><em style="margin-left:16px">+ 运费：</em><span>￥ 0.00</span></li>-->
+	<li><em style="margin-left:16px">寄送至：</em><span><input type="text"  name="address_xq" readonly="readonly" id="address_xq" style="width:600px"/></span></li>
+	<li><em >邮政编码：</em><span ><input type="text"  name="code" readonly="readonly" id="code" style="height:35px"/></span></li>
+	<li><em style="margin-left:16px">收货人：</em><span id="name"><input type="text"  name="contact" readonly="readonly" id="contact" width="40" style="width:100px"/></span> </li>
+	<li><em >手机号码：</em><span ><input type="text"  name="tel" readonly="readonly" id="tel" style="height:35px"/></span></li>
+	<li style="color: black;text-align:right">商品总额(<span style="color:red">不含运费,支付时自动包含运费</span>)：<em style="font-weight: bold;font-size:20px;color:#bf232b ;"><span>￥ {$lis.zprice}</span></em><input id="button" type="submit" name="submit" value="提交订单"></li>
+</ol>	
+</div>	
+ </form>
+</div>
+
+<!--收货信息  end-->
+
+<include file="Public:footer" />
+
+</div>
+		
+	</body>
+</html>

@@ -1,0 +1,260 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5shiv.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/hui/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/hui/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/hui/lib/Hui-iconfont/1.0.8/iconfont.css" />
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/hui/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/hui/static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <!--/meta 作为公共模版分离出去-->
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 普通商品管理 <span class="c-gray en">&gt;</span> 添加商品 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+
+
+    <div class="mt-20">
+
+    <form action="" method="post" class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$pro_allinfo['name']}" placeholder="" id="name" name="name">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品简介：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$pro_allinfo['intro']}" placeholder="" id="name" name="intro">
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品搜索关键字：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$pro_allinfo['keywords']}" placeholder="" name="keywords">
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>外链页面：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="{$pro_allinfo['url']}" placeholder="" id="name" name="url">
+            </div>
+        </div>
+
+
+                <input type="hidden" class="input-text col-sm-9" value="<?php echo $pro_allinfo['id']; ?>" placeholder="" id="click" name="pro_id">
+
+
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">首页大图片: </label>
+            <div class="formControls col-xs-8 col-sm-9">
+        <span class="btn-upload form-group">
+          <input class="input-text upload-url radius" type="text" value="{$pro_allinfo['photo1']}" name="uploadfile-1" id="uploadfile-1" readonly><a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xe642;</i> 浏览文件</a>
+          <input type="file" multiple name="photo1" class="input-file">690*370
+        </span>
+                </br>
+                <if condition="$pro_allinfo['photo1'] neq ''"><img src="__DATA__/{$pro_allinfo['photo1']}" style="width:100px;height:100px;"></if>
+            </div>
+
+
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">首页小图片: </label>
+            <div class="formControls col-xs-8 col-sm-9">
+        <span class="btn-upload form-group">
+          <input class="input-text upload-url radius" type="text" value="{$pro_allinfo['photo2']}" name="uploadfile-1" id="uploadfile-1" readonly><a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xe642;</i> 浏览文件</a>
+          <input type="file" multiple name="photo2" class="input-file">334*240
+        </span>
+                </br>
+                <if condition="$pro_allinfo['photo2'] neq ''"><img src="__DATA__/{$pro_allinfo['photo2']}" style="width:100px;height:100px;"></if>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">视频遮盖图: </label>
+            <div class="formControls col-xs-8 col-sm-9">
+        <span class="btn-upload form-group">
+          <input class="input-text upload-url radius" type="text" value="{$pro_allinfo['photo3']}" name="uploadfile-1" id="uploadfile-1" readonly><a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">&#xe642;</i> 浏览文件</a>
+          <input type="file" multiple name="photo3" class="input-file">750*370
+        </span>
+                </br>
+                <if condition="$pro_allinfo['photo3'] neq ''"><img src="__DATA__/{$pro_allinfo['photo3']}" style="width:100px;height:100px;"></if>
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排序：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="number" class="input-text col-sm-9" value="{$pro_allinfo['sort']?$pro_allinfo['sort']:0}" placeholder="" id="sort" name="sort">
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>是否是新品：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="radio" id="radio-2" name="isnew" value="1" checked>
+                <label for="radio-2">否</label>
+                &nbsp;      &nbsp;
+                <input type="radio" id="radio-1" name="isnew" value="2" <if condition="($pro_allinfo['isnew'] eq 2) ">checked<else /> </if>>
+                <label for="radio-1">是</label>
+
+
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>是否推荐：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="radio" id="radio-4" name="ishot"  value="1" checked>
+                <label for="radio-4">否</label>
+                &nbsp;      &nbsp;
+                <input type="radio" id="radio-3" name="ishot"  value="2" <if condition="($pro_allinfo['ishot'] eq 2) ">checked<else /> </if>>
+                <label for="radio-3">是</label>
+
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类别勾选：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+
+                <volist name="arr" id="vo">
+                    <input type="checkbox" id="checkbox-{$vo.id}" name="lei[]" value="{$vo.id}" <?php   if(in_array($vo['id'],$as)){     echo "checked";   }  ?>>
+                    <label for="checkbox-{$vo.id}">{$vo.title}{$vo.name}</label>
+
+                </volist>
+
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>风格勾选：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <volist name="feng" id="vo">
+                    <input type="checkbox" id="checkbox-{$vo.id}" name="feng[]" value="{$vo.id}" <?php   if(in_array($vo['id'],$as)){     echo "checked";   }  ?>>
+                    <label for="checkbox-{$vo.id}">{$vo.title}{$vo.name}</label>
+                </volist>
+
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>空间：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <volist name="kong" id="vo">
+                    <input type="checkbox" id="checkbox-{$vo.id}" name="kong[]" value="{$vo.id}" <?php   if(in_array($vo['id'],$as)){     echo "checked";   }  ?>>
+                    <label for="checkbox-{$vo.id}">{$vo.title}{$vo.name}</label>
+                </volist>
+
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>颜色：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <volist name="se" id="vo">
+                    <input type="checkbox" id="checkbox-{$vo.id}" name="se[]" value="{$vo.id}" <?php   if(in_array($vo['id'],$as)){     echo "checked";   }  ?>>
+                    <label for="checkbox-{$vo.id}">{$vo.title}{$vo.name}</label>
+                </volist>
+
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>详细内容：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <script id="editor" name="content" type="text/plain" value="" style="width:100%;height:400px;">{$pro_allinfo['content']}</script>
+                </div>
+                </div>
+                <div class="row cl">
+                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                    <button  class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+                </div>
+                </div>
+                </form>
+                </div>
+
+                <!--_footer 作为公共模版分离出去-->
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/jquery/1.9.1/jquery.min.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/layer/2.4/layer.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/static/h-ui/js/H-ui.min.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+                <!--请在下方写此页面业务相关的脚本-->
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/webuploader/0.1.5/webuploader.min.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/ueditor/1.4.3/ueditor.config.js"></script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/ueditor/1.4.3/ueditor.all.min.js"> </script>
+                <script type="text/javascript" src="__PUBLIC__/hui/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+                <script type="text/javascript">
+                    $(function(){
+                        var ue = UE.getEditor('editor');
+                        ue.ready(function() {
+                            //设置编辑器的内容
+                            ue.setContent('{$pro_allinfo.content|htmlspecialchars_decode}');
+                            //获取html内容，返回: <p>hello</p>
+                            var html = ue.getContent();
+                            //获取纯文本内容，返回: hello
+                            var txt = ue.getContentTxt();
+                        });
+                    });
+                    $(function(){
+                        $('.skin-minimal input').iCheck({
+                            checkboxClass: 'icheckbox-blue',
+                            radioClass: 'iradio-blue',
+                            increaseArea: '20%'
+                        });
+
+                        $("#form-article-add").validate({
+                            rules:{
+                                name:{
+                                    required:true,
+                                    minlength:2,
+                                    maxlength:20
+                                },
+                            },
+                            onkeyup:false,
+                            focusCleanup:true,
+                            success:"valid",
+                            submitHandler:function(form){
+                                $(form).Submit();
+                            }
+                        });
+                    });
+
+                </script>
+
+</body>
+</html>
+
+

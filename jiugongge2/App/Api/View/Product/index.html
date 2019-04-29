@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$app_name}</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/index.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/shangpinliebiao.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+	    <script src="__PUBLIC__/home/js/shangpinliebiao.js"></script> 
+        <script >
+        
+        </script>
+	</head>
+	<body>
+	
+<include file="Public:header" />
+<!--最大div-->		
+<div class="content">		
+<!--产品  分类-->
+<div class="shuiguo"><a href="{:U('Index/index?key=')}{$appkey}">首页</a> &nbsp;> &nbsp;
+<empty name="hang">产品分类<else /><volist name="hang" id="da"><a href="{:U('Product/index',array('pid'=>$da['id'],'key'=>$appkey))}">{$da.name}</a>&nbsp;> &nbsp;</volist> </empty>
+</div>
+
+<!--产品分类-->
+<div class="chanpinliebiao">
+	<div class="chanpin_zuo">
+		<div class="chanpin_zi"><img src="__PUBLIC__/home/images/c.jpg" alt="" /><em>最近上架</em></div>
+		<div class="chanpin_btn1">
+			<span class="prev1" ></span>
+			<span class="next1"></span>
+		</div>
+	<!--上下焦点图-->	
+	 <div id="menu_con">
+		<div class="tag" style="display:block">
+       <ul class="con_list" style="position: relative; height:500% ;">
+       <volist name="pro" id="shang">
+          <li class="imga"><a href="{:U('Product/xi',array('id'=>$shang['id'],'key'=>$appkey))}"><img class="ss" src="{$think_path}{$shang.photo_d}" alt="" /></a>
+          	<h1><span>{$shang.name|msubstr=0,10}</span><br /><em>
+			<if condition="($shang.price_yh eq 0) OR ($shang.price_yh eq '') "> 价格面议<else />￥{$shang.price_yh}元</if>
+			</em><p><span>销量:{$shang['shiyong']}</span><br /><span>人气:{$shang['renqi']}</span></p></h1>
+          </li>
+       </volist>
+
+        </ul>
+        </div> 
+	</div>
+	
+	</div>
+	
+	
+	
+	<div class="chanpin_you">	
+	   <div class="paixu">
+	        <if condition="$pid neq '' ">
+    		<ul class="type1">
+    			<li class="none">排序</li>
+    			<li id="renqi"><a href="{:U('Product/index',array('pid'=>$pid,'val'=>'ren','key'=>$appkey))}">人气<em></em></a></li>
+    			<li id="xiao"><a href="{:U('Product/index',array('pid'=>$pid,'val'=>'xiao','key'=>$appkey))}">销量<em></em></a></li>
+    			<li id="jia"><a href="{:U('Product/index',array('pid'=>$pid,'val'=>'jia','key'=>$appkey))}">价格<em></em></a></li>
+    		</ul>
+			</if>
+			 <if condition="$wen neq '' ">
+			 <ul style="margin-top:0px; margin-left:3px;">
+    			<span >{$wen}</span>
+			</ul>
+			</if>
+    		<form class="form-search" action="{:U('Product/index',array('pid'=>$pid,'key'=>$appkey))}" method="post" >
+            &nbsp;&nbsp;{$shangchang}
+    		<div class="paixu_sousuo">
+    			<input type="text" placeholder="列表中搜索" name="keywords" value=""/>
+    			<button type="submit"  name="sub">确定</button>
+    		</div>
+    		</form>
+	    </div>
+	
+	
+	 <div id="paginationdemo" class="demo"> 			
+       <div class="page">
+          <ul>
+
+          
+          <volist name="lis1" id="prs">
+          <li><a href="{:U('Product/xi',array('id'=>$prs['id'],'key'=>$appkey))}"><empty name="prs.logo"><img class="ss" src="{$think_path}{$prs.photo_x}" alt="" /><else /> <img class="ss" src="{$think_path}{$prs.logo}" alt="" /></empty></a>
+          	<h1><span>{$prs.name|msubstr=0,11}</span><br /><em>
+			<if condition="($prs.price_yh eq 0) OR ($prs.price_yh eq '') "> 价格面议<else />￥{$prs.price_yh}元</if>
+			</em><p><span>销量：{$prs['shiyong']}</span><br /><span>人气：{$prs['renqi']}</span></p></h1>
+          </li>
+          </volist>
+        </ul>
+       </div>
+      
+
+       
+    <div class="yeshu">  
+       <div id="pagnation">{$page}</div>	
+    </div>
+    </div>
+    </div>	
+    
+</div>		
+		
+<!--产品  分类   end-->		
+		
+	<!--结尾-->
+	<div style="clear: both;"></div>
+<div class="xian">	
+	
+	</div>
+	
+<include file="Public:footer" />
+		
+		
+		
+		
+		
+		
+		
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>

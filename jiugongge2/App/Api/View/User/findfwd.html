@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>找回密码</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/zhaohuimima.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.9.1.min.js"></script>
+	    <script src="__PUBLIC__/home/js/zhaohuimima.js"></script>
+       <style type="text/css">
+          .zhuce #five .button{width: 130px;height: 45px;line-height: 45px;background-color: #C81622;color: white;border: none;font-family: "微软雅黑";border-radius:5px ;display:block;float:right;text-align: center;margin:0 0 0 0;}
+        </style>
+	</head>
+	<body>
+		<include file="Public:header_zc" />
+
+<!--最大  div-->
+<div class="content">
+<!--找回密码   标题-->
+
+<div class="zhucebt">
+<div class="logo">
+	<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>找回密码</h1></div>
+</div>
+<!--找回密码   end-->
+
+<!--找回密码  内容-->
+<div class="zhuce">
+	
+	<form action="{:U('User/findfwd_edit?key=')}{$appkey}" id="form1" method="post">
+        <div id="one">
+        <h3 class="one"><span></span>账号：</h3>
+        <input autocomplete="on" id="Y1" type="text" name="name" placeholder="请输入用户名" maxlength="18">
+        <h4 class="warn"></h4>
+        <div class="clear"></div>
+        </div>
+     
+        <div id="five">
+        <h3 class="five"><span></span>手机号：</h3>
+        <input id="Y5" type="text" name="tel" placeholder="请输入手机号">
+        <h4></h4> <input type="button" value="点击验证" class="button" id="sendPhoneCode"  autocomplete="off" style="cursor:pointer;"/>
+        <div class="clear"></div>
+        </div>
+               
+        <div id="six">
+        <h3 class="six"><span></span>验证码：</h3>
+        <input id="Y6" type="text" placeholder="请输入验证码" name="yzm">
+        <h1></h1>
+        <div class="clear"></div>
+        </div>
+        
+      
+        <div id="two">
+        <h3 class="two"><span></span>新密码：</h3>
+        <input type="password" id="Y2"  placeholder="请输入新密码" name="newpwd" maxlength="18">
+        <h4 class="warn"></h4>
+        <div class="clear"></div>
+		</div>
+		
+        <div id="three">
+        <h3 class="three"><span></span>确认：</h3>
+        <input type="password" id="Y3" placeholder="请确认新密码" name="newpwds" maxlength="18">
+        <h4 class="warn"></h4>
+        <div class="clear"></div>
+        </div>
+     
+       <div class="button">
+       <input class="a-1" id="a-1" type="submit" value="完成提交" id="submit" >
+       </div>
+    </form>
+	<script>
+ $(function(){
+
+        $("#submit").click(function(){
+           if($("#Y1").val()==''){
+            }else{
+                alert('同意相关协议才能注册');
+                return false;
+            }
+        })
+
+ $("#sendPhoneCode").click(function(){
+   if($("#Y1").val()==''){
+     alert('用户名不能为空');
+    return false;
+   }
+   if($("#Y5").val()==''){
+       alert('手机号不能为空');
+     return false;
+   }
+   var type = 2;
+   var name = $("#Y1").val();
+   var tel  = $("#Y5").val();
+   var wait = 60;//倒计时120秒
+   var intervalId;//定时
+   var i = wait;//倒计时递减 1
+   $.post("{:U('User/send?key=')}{$appkey}",{"name":name,"tel":tel,"type":type},function(data){
+        if (data==1) {
+            $("#sendPhoneCode").attr("disabled", "disabled");
+            $("#sendPhoneCode").val("发送成功");
+            intervalId = setInterval(function(){
+                $("#sendPhoneCode").val(i + "秒后重新发送").addClass("disabled");
+                i = i - 1;
+                if (i <= -1) {
+                    clearInterval(intervalId);
+                    $("#sendPhoneCode").removeAttr("disabled");
+                    $("#sendPhoneCode").val("发送验证码").removeClass("disabled");
+                }
+            }, 1000);
+        }else{
+            alert(data);
+        }
+  })
+ })
+  
+ });
+</script>
+</div>
+
+<!--找回密码  内容  end-->
+<include file="Public:footer" />
+
+</div>
+	</body>
+</html>
+

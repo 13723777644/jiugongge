@@ -1,0 +1,30 @@
+<!--pages/record/record.wxml-->
+<ad unit-id="adunit-8296ca0e1f95e518"></ad>
+<view style='margin-bottom:130rpx;'>
+  <view class='content'>
+    <view class='cell' wx:for="{{list}}" wx:key="{{index}}">
+      <view class='cell_left' wx:if="{{isEdit}}">
+        <view class='checkbox' data-index="{{index}}" catchtap='choose'>
+          <checkbox-group name="isSave" >
+            <checkbox checked="{{item.status}}"/>
+          </checkbox-group>
+        </view>
+      </view>
+      <view class='cell_rigth' data-index="{{index}}" catchtap='toDetail'>
+        <text class='addtime'>{{item.addtime}}</text>
+        <text class='content'>{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='bottom'>
+  <view hidden='{{isEdit}}' class='edit_button' bindtap='edit'>编辑</view>
+  <view class='show_edit' hidden='{{!isEdit}}'>
+    <view class='button_layout'>
+      <view catchtap='doMerge' class='together'>合并</view>
+      <view catchtap='doDelete' class='delete'>删除</view>
+    </view>
+    <view class='cencal_button' bindtap='cencal'>取消</view>
+  </view>
+</view>

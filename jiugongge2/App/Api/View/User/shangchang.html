@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人中心_关注的店铺</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/guanzhudianpu.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/home/js/guanzhudianpu.js"></script>
+	</head>
+	<body>
+
+<include file="Public:header_zc" />
+<!--最大  div-->
+<div class="content">
+<!--个人中心   标题-->
+
+<div class="gouwuchebt">
+<div class="logo">
+		<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>个人中心</h1></div>
+
+</div>
+<!--个人中心   end-->
+
+<!--搜索商品-->
+<form class="form-search" action="{:U('Product/index?key=')}{$appkey}" method="post" >
+	<div class="geren_sousuo">
+    			<input type="text" placeholder="商品名称" name="keywords"/>
+    			<button  type="submit"  name="sub">确定</button>
+    </div>
+    </form>
+<!--搜索商品  end-->
+
+<!--我的订单-->
+<div class="guanzhudianpu">
+	<include file="Public:left" />
+<!--关注的店铺-->
+<!-- 右边-->
+	<div class="dianpu_you">
+		<div class="my">关注的店铺</div>
+		<div id="paginationdemo" class="demo">
+<!--第一页-->
+	<div class="page">
+   <!--11111-->
+   <volist name="shang" id="slist">
+   <script>
+   $(function(){
+	    var page = 1;
+	    var i = 4; 
+	    $("span.next{$slist.id}").click(function(){  
+		     var $parent = $(this).parents("div.page");
+			 var $v_show = $parent.find("div.v_content_list{$slist.id}"); 
+			 var $v_content = $parent.find("div.v_content{$slist.id}"); 
+			 var v_width = $v_content.width() ;
+			 var len = $v_show.find("li").length;
+			 var page_count = Math.ceil(len / i) ;  
+			 if( page == page_count ){ 
+					$v_show.animate({ left : '0px'}, "slow");
+					page = 1;
+				}else{
+					$v_show.animate({ left : '-='+v_width }, "slow"); 
+					page++;
+			 }
+			 $parent.find("span").eq((page-1)).addClass("current").siblings().removeClass("current");
+	   });
+	   
+	    $("span.prev{$slist.id}").click(function(){
+		     var $parent = $(this).parents("div.page");
+			 var $v_show = $parent.find("div.v_content_list{$slist.id}");
+			 var $v_content = $parent.find("div.v_content{$slist.id}"); 
+			 var v_width = $v_content.width();
+			 var len = $v_show.find("li").length;
+			 var page_count = Math.ceil(len / i) ; 
+			 if( page == 1 ){  
+					$v_show.animate({ left : '-='+v_width*(page_count-1) }, "slow");
+					page = page_count;
+			}else{
+					$v_show.animate({ left : '+='+v_width }, "slow");
+					page--;
+			}
+			$parent.find("span").eq((page-1)).addClass("current").siblings().removeClass("current");
+	    });
+   })
+   </script>
+		<div class="one">
+	<div class="one_zuo">
+		<ul>
+		<li><input type="checkbox" name="newslist[]" value="{$slist.id}" id="newslist"/> <em><img src="{$think_path}{$slist.logo}" alt="" width="110" height="86"/></em></li>
+		<li>{$slist.name}</li>
+		
+		<li><span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$slist.qq}&site=qq&menu=yes">联系客服</a></span><span><a href="{:U('User/unfollow',array('id'=>$slist['id'],'key'=>$appkey))}">取消关注</a></span></li>	
+		</ul>
+	</div>
+			<div class="change_btn">
+			<span class="prev{$slist.id} prev" ></span>
+			<span class="next{$slist.id} next"></span>
+		</div>
+	<div class="v_content{$slist.id} v_content">
+		<div  class="v_content_list{$slist.id} v_content_list">
+			<ul>
+			  <volist name="slist['shop']" id="pro">
+				<li><a href="{:U('Product/xi',array('id'=>$pro['id'],'key'=>$appkey))}"><empty name="pro.logo"><img src="{$think_path}{$pro.photo_x}" alt="" /><else /> <img src="{$think_path}{$pro.logo}" alt="" /></empty></a><h4><a href="{:U('Product/xi',array('id'=>$pro['id'],'key'=>$appkey))}">￥{$pro.price_yh}</a></h4></li>
+		      </volist>
+		     </ul>
+		</div>
+	</div>
+		</div>
+		</volist>
+  <script>
+  $(function () {	
+	 
+		$("#quxiao").click(function(){
+			//alert('aaaa');
+			var adIds = "";  
+	        $("input[id=newslist]:checked").each(function(i){  
+	        	var arr = $(this).val();
+	            if(0==i){  
+	                adIds = arr;  
+	            }else{  
+	                adIds += (","+arr);  
+	            }  
+	        });  
+	       // alert(adIds);
+			$.post("{:U('User/unfollows?key=')}{$appkey}",{"id":adIds},function(data){
+			alert(data);
+			if(data!=''){
+				window.location.reload();
+			}
+			})
+			
+		})
+		})
+  </script>
+<!--分页 -->		
+	<div class="yeshu"> 
+	   <div class="quanxuan">
+	   	<input type="checkbox" class="allselect"/><em>全选</em>
+	   	<span><a id="quxiao">取消关注</a></span>
+	   </div>
+       <div id="pagnation">{$page}</div>
+    </div>
+    
+ </div>	
+</div>		
+</div>
+
+<!--我的订单   end-->
+<include file="Public:footer" />
+
+</div>
+	</body>
+</html>
+

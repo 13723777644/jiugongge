@@ -1,0 +1,270 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{$app_name}</title>
+<script src="__PUBLIC__/home/js/jquery-1.9.1.min.js"></script>
+<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+<script src="__PUBLIC__/home/js/index.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+<link rel="stylesheet" href="__PUBLIC__/home/css/index.css" />
+</head>
+
+<body class="order_comment_page">
+<!--顶部--> 
+
+	<include file="Public:ind_head" />
+	
+	
+		<!--代码块-->
+		<script type="text/javascript">
+		//star
+		$(document).ready(function(){
+			var stepW = 40;
+			var description = new Array("2","4","6","8","10");//指向的分数
+			/*var stars = $("#star > li");*/
+			$('.star').hover(function() {
+				var stars = $(this).find('li');
+				var $shwo = $(this).parent().next();
+				var descriptionTemp;
+				var $showb = $(this).next();
+				var $pingfen = $(this).parent().siblings('.pingfen');
+				var me = "您的评价分数:";
+				stars.each(function(i){
+					$(stars[i]).click(function(e){
+						var n = i+1;
+						$showb.css("width", stepW*n+"px");
+						descriptionTemp = description[i];
+						$shwo.text(me+descriptionTemp);
+						$pingfen.val(descriptionTemp);
+						$(this).find('a').blur();
+						return stopDefault(e);
+						return descriptionTemp;
+					});
+					$(stars[i]).hover(
+						function(){
+							$showb.css('width', 0);
+							$shwo.text(" ");
+						}, function() {
+							return false;
+						}
+					);
+				});
+
+				function stopDefault(e){
+					if(e && e.preventDefault)
+						   e.preventDefault();
+					else
+						   window.event.returnValue = false;
+					return false;
+				};
+			});
+		}, function() {
+			return false;
+		});
+		
+		</script>
+		<div class="tt_order_comment_page">
+			<div class="tt_order_comment_goods">
+				<table>
+					<tr>
+						<th width="55%" class="tt_table_th_first">商品信息</th>
+						<th width="15%">收货人</th>
+						<th width="15%">金额</th>
+						<th width="15%">状态</th>
+					</tr>
+					<foreach name="result" item="oreders">
+					<tr>
+						<td width="55%" class="tt_table_td_first">
+							<div class="tt_table_td_product">
+								<div class="tt_img"><a href="{:U('Product/xi',array('id'=>$oreders[0]['pid'],'key'=>$appkey))}" data-id="{$oreders[0]['pid']}"><img src="{$think_path}{$oreders[0]['photo_x']}" alt="" height="79" width="79" /></a></div>
+								<div class="tt_des">
+									<div class="tt_buyname"><a href="{:U('Product/xi',array('id'=>$oreders[0]['pid'],'key'=>$appkey))}">{$oreders[0]['name']}</a></div>
+									<div class="tt_buytime">购买时间：{$oreders[0]['addtime']|date='Y-m-d',###}</div>
+								</div>
+							</div>
+						</td>
+						<td width="15%">{$orderr[0]['contact']}</td>
+						<td width="15%" class="red_money">￥{$oreders[0]['price']}</td>
+						<td width="15%">
+                            <if condition="$orderr[0]['status'] eq 2">交易完成
+                            </if>
+						</td>
+					</tr>
+					</foreach>
+				</table>
+			</div>
+			<div class="tt_order_comment_enter">
+				<form action="{:U('User/addMessage?key=')}{$appkey}" method="post">
+				<foreach name="result" item="oreders" key="k">
+				<div class="tt_top">
+					<div class="tt_order_comment_enter_left">
+						<div class="tt_enter_title">请输入您的评价(商品:<span style="color:red">{$oreders[0]['name']}</span>)</div>
+						<div class="tt_enter_text">
+							<textarea placeholder="" class="message" name="content{$oreders[0]['pid']}"></textarea>						
+						</div>
+					</div>
+					<div class="tt_order_comment_enter_right">
+						<div id="xzw_starSys">
+							<div class="tt_score">请对本次购物体验进行评分</div>
+							<div id="xzw_starBox">
+								<ul class="star" id="star">
+									<li><a href="javascript:void(0)" title="1" class="one-star">1</a></li>
+									<li><a href="javascript:void(0)" title="2" class="two-stars">2</a></li>
+									<li><a href="javascript:void(0)" title="3" class="three-stars">3</a></li>
+									<li><a href="javascript:void(0)" title="4" class="four-stars">4</a></li>
+									<li><a href="javascript:void(0)" title="5" class="five-stars">5</a></li>
+								</ul>
+								<div class="current-rating" id="showb"></div>
+							</div>
+							<!--评价文字-->
+							<div class="description"></div>
+							<input type="hidden" name="pingfen{$oreders[0]['pid']}" class="pingfen" value=""> 
+						</div>
+					</div>
+				</div>
+				</foreach>
+				<input type="hidden" name="pid" class="pid" value="{$_GET['id']}"> 
+				<input type="hidden" name="orderid" class="orderid" value="{$_GET['orderid']}">
+				<input type="hidden" name="key" class="key" value="{$_GET['key']}"> 
+				<div class="tt_button">
+					<input type="submit" id="sendPhoneCode" class="tt_review" value="发表评价">	
+				</div>	
+				</form>
+							
+			</div>		
+		</div>			
+		<!--代码块-->	
+		<script type="text/javascript">
+            $(function(){
+            	$(".tt_review").click(function(){
+            		 //var message = $("textarea").siblings(".message").val();//
+            		var _len = $('textarea').length;
+					for(var i=0; i<_len; i++) {
+						var _val = $('textarea').eq(i).val();
+						if(_val == '') {
+							/*有为空的时候的操作*/
+							alert("评论内容不能为空");
+                            return false;
+						}
+
+					}
+            		 /*if(message.length>20){
+                          alert("评论内容不能超过20个字");
+                          // $("#sendPhoneCode").attr("disabled", "disabled");
+                          return false;
+            		 }else{
+            		 	 // $("#sendPhoneCode").removeAttr("disabled");
+            		 }*/
+            	})
+            })
+		</script>
+
+<style>
+.tujiann-foot .footul ul{}
+.tujiann-foot ul.footul>li{float: left;text-align: center;}
+.tujiann-foot ul.footul>li.footul-one{width: 18%;}
+.tujiann-foot ul.footul>li.footul-two{width: 23%;}
+.tujiann-foot ul.footul>li.footul-two span img{width: 90px;height: 90px;margin-top: 12px;}
+.tujiann-foot ul.footul>li.footul-one ul li{height: 35px;line-height: 35px; width: 100%;}
+.tujiann-foot ul.footul>li.footul-one ul li a{color: #333333;font-size: 14px;}
+.tujiann-foot ul.footul>li.footul-one ul li.oneli{font-size: 18px;}
+.tujiann-foot ul.footul>li.footul-two p img{height: 35px;vertical-align: middle;}
+.tujiann-foot ul.footul>li.footul-two p{height: 35px;line-height: 35px;font-size: 18px;}
+.tujiann-foot ul.footul>li.footul-two p.footul-two-right{text-align: left; margin-left: 35px;}
+.tujiann-foot ul.footul>li.footul-two p.footul-two-left{margin-top: 20px; text-align: left; margin-left: 35px;}
+.tujiann-foot{border-top: 1px solid #e4e4e4;margin-bottom: 20px; width: 100%;}
+.tujiann-foot ul.footul>li.footul-two p.ziti{font-size: 14px;} 
+.king-clear {clear: both;}
+</style>
+<if condition="($_GET['key'] eq 15222) OR ($_GET['key'] eq 15224)">
+<div class="db" style="min-width:1000px;width:64.3%;height:100%;margin:0 auto;">
+	<div class="yqlj">
+		<ul>
+		<li><a >友情链接 ：</a></li>
+		<volist name="listss" id="liname">	
+			<li><a href="{$liname.link}" target="view_window">{$liname.name}</a></li>
+		</volist>
+		</ul>
+		<div class="king-clear"></div>
+	</div>
+	<div class="king-clear"></div>
+	<div class="tujiann-foot">
+	<ul class="footul">
+		<li class="footul-one">
+			<ul>
+				<li class="oneli">新手指南</li>
+				<li><a href="{:U('News/xi',array('id'=>43,'key'=>$appkey))}">关于屠涂</a></li>
+				<li><a href="{:U('News/xi',array('id'=>44,'key'=>$appkey))}">购物流程</a></li>
+				<li><a href="{:U('News/xi',array('id'=>45,'key'=>$appkey))}">入驻流程</a></li>
+			</ul>
+		</li>
+		<li class="footul-one">
+			<ul>
+				<li class="oneli">平台交易</li>
+				<li><a href="{:U('News/xi',array('id'=>46,'key'=>$appkey))}">付款方式</a></li>
+				<li><a href="{:U('News/xi',array('id'=>47,'key'=>$appkey))}">积分规则</a></li>
+				<li><a href="{:U('News/xi',array('id'=>48,'key'=>$appkey))}">服务条款</a></li>
+			</ul>
+		</li>
+		<li class="footul-one">
+			<ul>
+				<li class="oneli">放心交易</li>
+				<li><a href="{:U('News/xi',array('id'=>49,'key'=>$appkey))}">增值服务</a></li>
+				<li><a href="{:U('News/xi',array('id'=>50,'key'=>$appkey))}">退货换货</a></li>
+				<li><a href="{:U('News/xi',array('id'=>51,'key'=>$appkey))}">投诉举报</a></li>
+			</ul>
+		</li>
+		<li class="footul-two">
+			<span><img src="__PUBLIC__/img/tutu2.png" /></span>
+			<p class="ziti">屠涂微信公众号</p>
+		</li>
+		<li class="footul-two">
+			<p class="footul-two-left" style="">24小时客服热线</p>
+			<p class="footul-two-right"><img src="__PUBLIC__/img/tutu10.png"/>400-168-2989</p>
+		</li>
+	</ul>
+	<div class="dbs">
+			<ul>
+				<li>浙ICP备16009769号-1 | 服务监督热线 ：0571-82875811</li>
+				<li>Copyright 版权所有 ：杭州古品电子商务有限公司</li>
+			</ul>
+			
+		</div> 
+	<div class="king-clear"></div>
+</div>
+	
+</div>  
+    
+	<else/>
+  <!--底部-->	
+  <div class="yqlj">
+		<!--<div class="xian"></div>-->
+		<ul>
+		<li><a >友情链接 ：</a></li>
+		<volist name="listss" id="liname">
+			
+			<li><a href="{$liname.link}">{$liname.name}</a></li>
+		</volist>
+		</ul>
+		<div class="king-clear"></div>
+	</div>
+		<div class="dbs">
+			<ul>
+				<li>网络文化经营许可证 ：[2013]0268-027号 | 沪ICP证 ：070359号 | 信息网络传播视听节目许可证 ：1109364号</li>
+				<li>违法及不良信息举报电话 ：4000939255 | Copyright 版权所有 ：{$app_name}</li>
+			</ul>
+			
+		</div> 
+</if> 
+  <!--回顶部-->
+  
+  <div class="xuanfu">
+        <ul id="xuanfu">
+            <li class="one"><a href="{:U('Shopping/index?key=')}{$appkey}"></a></li>
+            <li class="two"><a href="{:U('User/collection?key=')}{$appkey}"></a></li>
+            <li class="three"><a href="http://wpa.qq.com/msgrd?v=3&uin={$q.concent}&site=qq&menu=yes" target="_black"></a></li>
+            <li class="four"></li>
+        </ul>
+    </div>
+   
+     <!--回顶部    end-->

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>登录页</title>
+		<link rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css" />
+		<link rel="stylesheet" href="__PUBLIC__/home/css/denglu.css" />
+		<script src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+	</head>
+	<body>
+
+<include file="Public:header_zc" />
+<!--最大  div-->
+<div class="content">
+<!--登录   标题-->
+
+<div class="denglubt">
+<div class="logo">
+		<a href="{:U('Index/index?key=')}{$appkey}"><img src="{$think_path}{$shop_logo.img}" alt="" /></a>
+</div>	
+<div class="hyzc"><h1>欢迎登录</h1></div>
+</div>
+<!--登录   end-->
+
+<!--登录  内容-->
+<div class="denglu">
+	<div class="denglu_zuo">
+		<div class="denglu_tu">
+			<img src="__PUBLIC__/home/images/qq.jpg" alt="" />
+		</div>
+	</div>
+	
+	<div class="denglu_you">
+	
+		<div class="denglu_text">
+		<form  method="post" action="{:U('User/doLogin?key=')}{$appkey}">
+			<div class="shangcheng_denglu">
+				<h1>商城登录</h1>
+				<span>还没有帐号？&nbsp;<a href="{:U('User/register?key=')}{$appkey}"><em>立即注册</em></a></span>
+			</div>
+			
+	  <div id="one">
+        <input id="Y1" type="text" placeholder="请输入帐号" name="name" maxlength="18">
+        <h4></h4>
+       </div>	
+       
+		<div id="two">
+        <input id="Y2" type="password" placeholder="请输入密码" name="pwd" maxlength="18">
+        <h4></h4>
+        </div>
+			
+		<div id="three">
+        <input id="Y3" type="text" placeholder="" name="code">
+        <h2> <img src="{:U('User/verify?key=')}{$appkey}" width='120' height='45' alt="点击刷新验证码" class="dingwei" onclick="this.src+='?' + Math.random();" style="cursor:pointer;" /></h2>
+        
+        </div>
+		
+		<div id="four">
+			<input type="checkbox" /> <em>保存登录信息</em>
+				<a href="{:U('User/findfwd?key=')}{$appkey}"><span>忘记密码？</span>
+		</div>
+		
+		 <div class="button"><input type="submit" name="submit" id="submit"  value="立即登陆"></div>
+		</form>
+		</div>
+		
+	</div>
+	
+	
+	
+	
+</div>
+
+<!--登录  内容  end-->
+
+<!--结尾-->
+
+<div class="xian"></div>	
+<include file="Public:footer" />
+</div>
+		
+	</body>
+</html>

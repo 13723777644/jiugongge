@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/home/css/chushihua.css"/>
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/home/css/index.css" />
+	<style type="text/css">
+       .box{width:1223px;height:201;margin:10px auto}
+       .db{width: 100%;height: 157px;background-color:white;border-top: 1px solid #e4e4e4;display: inline-block;}
+       .db ul{text-align: center;}
+       .db ul li{float: left;/*height:28px;*/text-align: center ;}
+       .king-clear {clear: both;}
+       .content {min-width: 1200px;}
+	</style>
+	<style type="text/css">
+
+      #pagnation a.current{background-color:#ff2020 ;border: 1px solid #e4e4e4;cursor: default;padding: 7px 12px;color:white;text-decoration: none;}
+        .yeshu #pagnation a{width: 20px;height: 20px;color:#666666;border: 1px solid #e4e4e4;font-weight: normal;margin:auto 0px;padding: 5px 6px;text-decoration: none;}
+         .yeshu #pagnation .current{background-color:#ff2020 ;border: 1px solid #e4e4e4;cursor: default;padding: 7px 12px;color:white;text-decoration: none;}
+        .page  ul li img{width: 130px;height:130px;margin:10px 10px;}
+        .page  ul li h1{width:70% ;margin: 0 auto;line-height:1.2;letter-spacing: 0.5px;}
+        .page  ul li h1 em{line-height:2;color:#cd1424;}
+        .page  ul li h1 s{font-size: 12px;color: #999999;margin-left: 10px;}
+
+	</style>
+	</head>
+	<body>
+		<include file="Public:ind_head" />
+		<div class="daohang-box">
+			<div class="box-cont">
+		<!--<div class="daohang">
+			<ul>
+				<li><a href="">服装城</a></li>
+				<li><a href="">超市</a></li>
+				<li><a href="">游戏</a></li>
+				<li><a href="">全球购</a></li>
+				<li><a href="">美妆馆</a></li>
+				<li><a href="">零食主义</a></li>
+				<li><a href="">乐团购</a></li>
+				<li><a href="">拍卖场</a></li>
+			</ul>
+		</div>-->
+<div class="storedetail">
+	<div class="storedetail-left">
+	<div class="detailleft-top">
+	<div class="storedetail-title">商铺详情</div>
+	<div class="top-cont">
+		<div class="top-cont-pic">
+			<div style="width:400px;height:150px;margin:0 auto"><img src="{$think_path}{$shangList[0]['vip_char']}" width="400" height="150" /></div>
+			<div class="top-cont-text">{$shangList[0]['content']}</div>
+		</div>		
+	</div>
+	</div>	
+	<div class="detailleft-buttom">
+		<div class="storedetail-title">商品展示</div>
+		<div class="productt">
+			<ul class="productt-one">
+				<foreach name="proLists" item="prolists">
+				<li>
+					<div class="nev">
+				<div class="nev-img"><a href="{:U('Product/xi',array('id'=>$prolists['id'],'key'=>$appkey))}"><img width="82" height="82" src="{$think_path}{$prolists['logo']}"/></a></div>
+				<div class="nev-content">
+					<ul>
+						<li class="nevone"><a href="{:U('Product/xi',array('id'=>$prolists['id'],'key'=>$appkey))}">{$prolists['name']}</a></li>
+						<li class="nevtwo">{$prolists['content']|msubstr=0,45}</li>
+						<li class="nevthree">¥
+							<if condition="$prolists.price_yh eq 0" >
+							价格面议
+							<else />
+							{$prolists['price_yh']}
+							</if>
+						</li>
+					</ul>
+				</div>
+				</div>	
+				</li>
+				</foreach>
+			</ul>
+		</div>
+
+	</div>
+	<div class="box" style="height:50px;width:300px;margin:0 auto"></div>
+                    <div class="yeshu">  
+                       <div id="pagnation">{$show}</div>    
+                    </div>
+	</div>
+	<div class="storedetail-right">
+	<div class="detailright-top">
+	<div class="storedetail-title">商铺信息</div>
+	<div class="companydetail">
+	<ul>
+		<li class="comp-title">{$shangList[0]['name']}</li>
+		<li>所属类别：化工涂料</li>
+		<li>注册日期：{$shangList[0]['addtime']|date='Y-m-d',###}</li>
+		<li>联&nbsp;系&nbsp;人：{$shangList[0]['uname']}</li>
+		<li>公司电话：0512-51822898</li>
+		<li>手&nbsp;&nbsp;机:　{$shangList[0]['utel']}</li>
+		<li>详细地址：{$shangList[0]['address_xq']}</li>
+		<li>公司网址：{$shangList[0]['internet']}</li>
+	</ul>	
+	</div>
+	</div>
+	
+	<div class="detailright-buttom">
+		<div class="storedetail-title">精品推荐</div>
+		<div class="product">
+			<ul class="product-one">
+				<foreach name="proList" item="prolist">
+				<li>
+					<div class="newss">
+				<div class="news-img"><a href="{:U('Product/xi',array('id'=>$prolist['id'],'key'=>$appkey))}"><img width="82" height="82" src="{$think_path}{$prolist['logo']}"/></a></div>
+				<div class="news-content">
+					<ul style="">
+						<li class="newsone"><a href="{:U('Product/xi',array('id'=>$prolist['id'],'key'=>$appkey))}">{$prolist['name']}</a></li>
+						<li class="newstwo">{$prolist['content']|msubstr=0,15}...</li>
+						<li class="newsthree">¥
+							<if condition="$prolist.price_yh eq 0" >
+							价格面议
+							<else />
+							{$prolist['price_yh']}
+							</if>
+						</li>
+					</ul>
+				</div>
+				</div>	
+				</li>
+               </foreach>
+			</ul>
+		</div>
+	</div>
+	
+	</div>
+	<div class="king-clear"></div>
+</div>
+		</div>
+		</div>
+		<div class="box">
+			<div class="xian"></div>
+		   <include file="Public:footer" />
+	    </div>
+	</body>
+</html>
